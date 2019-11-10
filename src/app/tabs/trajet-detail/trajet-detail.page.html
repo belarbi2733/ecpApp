@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!isValidate"  (click)="validate()" >
+        <ion-icon  slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="isValidate" disabled >
+        <ion-icon slot="icon-only"  name="checkmark-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Détail du trajet
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="session" class="ion-padding">
+    <h1>{{session.cityStart}} &ndash; {{session.cityStop}}</h1>
+    <p *ngIf="session.prix">{{session.prix}}</p>
+    <p *ngIf="session.nbrPassager">nombre de passagers: {{session.nbrPassager}}</p>
+    <ion-text color="medium">
+      {{session.timeStart}} &ndash; {{session.timeEnd}}
+    </ion-text>
+  </div>
+  <div>
+    <ion-row>
+      <ion-col>
+        <ion-button  *ngIf="!isValidate" color="success" (click)="validate()" (click)="openModal()" expand="block">Valider</ion-button>
+        <ion-button *ngIf="isValidate" color="dark" disabled expand="block">Trajet clôturé</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right" (click)="onComplaint()"> Un problème lors du trajet?</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+</ion-content>

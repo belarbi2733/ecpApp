@@ -1,0 +1,59 @@
+{  "trajet": [
+    {
+      "groups": [
+        {
+          "date": "17-05-2020",
+          "sessions": [
+            {
+              "cityStart": "Paris",
+              "cityStop":"Mons",
+              "timeStart": "8:00 am",
+              "timeEnd": "9:00 am",
+              "id": "1",
+              "prix":"15€",
+              "nbrPassager":"2"
+            }
+          ]
+        },
+        {
+          "date": "02-07-2020",
+          "sessions": [
+            {
+              "cityStart": "Tournai",
+              "cityStop":"Ostende",
+              "timeStart": "9:30 am",
+              "timeEnd": "9:45 am",
+              "id": "2"
+            },
+            {
+              "cityStart": "Frameries",
+              "cityStop":"Quaregnon",
+              "timeStart": "9:45 am",
+              "timeEnd": "10:00 am",
+              "id": "3"
+            },
+            {
+              "cityStart": "Charleroi",
+              "cityStop":"Bruxelles",
+              "timeStart": "9:15 am",
+              "timeEnd": "9:30 am",
+              "id": "4"
+            }
+          ]
+        },
+        {
+          "date": "26-11-2020",
+          "sessions": [
+            {
+              "cityStart": "La Louvière",
+              "cityStop":"Binche",
+              "timeStart": "10:00 am",
+              "timeEnd": "10:15 am",
+              "id": "5"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

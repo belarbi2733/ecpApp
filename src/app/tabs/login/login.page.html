@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+      <img src="/assets/logo.JPG" alt="" />
+      <ion-card-header>
+        <ion-card-subtitle>Connectez vous!</ion-card-subtitle>
+        <ion-card-title>Welcome to Easy CarPool App</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p> Si vous souhaitez vous inscrire, rendez-vous sur notre site <a href="https://www.easy-carpool.com" > Easy CarPool </a></p>
+      </ion-card-content>
+    </ion-card>
+
+    <form #loginForm="ngForm" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked" color="primary">Username</ion-label>
+          <ion-input [(ngModel)]="login.username" type="text" name="username" required #username="ngModel" spellcheck="false" autocapitalize="off">
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger">
+          <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
+          Entrez votre nom d'utilisateur
+        </p>
+        </ion-text>
+
+        <ion-item>
+          <ion-label position="stacked" color="primary">Password</ion-label>
+          <ion-input [(ngModel)]="login.password" type="text" name="password" required #password="ngModel" >
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger">
+          <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
+          Entrez votre mot de passe
+        </p>
+        </ion-text>
+
+      </ion-list>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="onLogin(loginForm)" type="submit" expand="block">Login</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+</ion-content>

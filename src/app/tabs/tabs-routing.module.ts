@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { TrajetDetailPageModule } from '../tabs/trajet-detail/trajet-detail.module';
+import {ModalRatingPageModule} from '../tabs/modal-rating/modal-rating.module';
 
 const routes: Routes = [
   {
@@ -8,23 +10,32 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'login',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../tabs/login/login.module').then(m => m.LoginPageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'trajet',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-          }
+              import('../tabs/trajet/trajet.module').then(m => m.TrajetPageModule)
+          },
+          {
+          path: 'session/:sessionId',
+          loadChildren: () => import('../tabs/trajet-detail/trajet-detail.module').then(m => m.TrajetDetailPageModule)
+        },
+        {
+          path: 'modal-rating',
+          loadChildren: () => import('../tabs/modal-rating/modal-rating.module').then(m => m.ModalRatingPageModule)
+        }
+
         ]
       },
       {
@@ -33,20 +44,20 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../tabs/tab3/tab3.module').then(m => m.Tab3PageModule)
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/login',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/login',
     pathMatch: 'full'
   }
 ];

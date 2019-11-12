@@ -24,11 +24,11 @@
   <ion-list *ngIf="!loggedIn">
     <ion-tab-bar slot="bottom">
       <ion-tab-button  tab="login">
-        <ion-icon name="log-in"></ion-icon>
+        <ion-icon name="person"></ion-icon>
         <ion-label>Login</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="trajet">
+      <ion-tab-button  (click)="toast()" >
             <ion-icon name="car"></ion-icon>
             <ion-label>Trajets</ion-label>
           </ion-tab-button>

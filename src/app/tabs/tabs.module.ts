@@ -11,6 +11,7 @@ import { TrajetPageModule } from '../tabs/trajet/trajet.module';
 import { TrajetDetailPageModule } from '../tabs/trajet-detail/trajet-detail.module';
 import {ModalRatingPage} from '../tabs/modal-rating/modal-rating.page';
 
+
 @NgModule({
   imports: [
     IonicModule,

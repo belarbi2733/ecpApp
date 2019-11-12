@@ -32,12 +32,12 @@ export class TrajetPage {
   async toast() {
     const toast = await this.toastController.create({
       message: 'Validez vos derniers trajets sous 24h',
-      duration: 4000,
+      duration: 3000,
       buttons: [{
           text: 'ok',
           role: 'cancel',
           handler: () => {
-            toastController.dismiss()
+            this.toastController.dismiss()
           }
         }]
     });
@@ -60,7 +60,6 @@ export class TrajetPage {
       this.groups = data.groups;
     });
   }
-
 
 
 

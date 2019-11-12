@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Events, MenuController, Platform, ToastController } from '@ionic/angular';
+import { Events, MenuController, Platform,  ToastController } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
 
@@ -18,8 +18,8 @@ export class TabsPage {
     private events: Events,
     private userData: UserData,
     private storage: Storage,
-    private router: Router
-
+    private router: Router,
+    public toastController: ToastController
   ) {  }
 
   async ngOnInit() {
@@ -53,6 +53,21 @@ export class TabsPage {
     this.userData.logout().then(() => {
       return this.router.navigateByUrl('/tabs/login');
     });
+  }
+
+  async toast() {
+    const toast = await this.toastController.create({
+      message: 'Vous devez vous connecter',
+      duration: 2000,
+      buttons: [{
+          text: 'ok',
+          role: 'cancel',
+          handler: () => {
+            this.toastController.dismiss()
+          }
+        }]
+    });
+    toast.present();
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input,  EventEmitter ,Output  } from '@angular/core';
 import { Config, ModalController,NavParams , AlertController, ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 enum COLORS {
   GREY = "#E0E0E0",
@@ -16,9 +17,9 @@ enum COLORS {
 })
 export class ModalRatingPage implements OnInit {
   submittedMess = false;
-  submittedRating = false;
   supportMessage: string;
-  star : number;
+  submitRating = false;
+  clickedRating = false;
 
   @Input() rating: number ;
 
@@ -27,6 +28,7 @@ export class ModalRatingPage implements OnInit {
   constructor(
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
+    public router: Router,
     public toastCtrl: ToastController
 ) { }
 
@@ -42,6 +44,8 @@ export class ModalRatingPage implements OnInit {
 
       this.rating = index;
       this.ratingChange.emit(this.rating);
+      this.clickedRating =true;
+
    }
 
    getColor(index: number) {
@@ -68,21 +72,25 @@ export class ModalRatingPage implements OnInit {
   }
 
   async submit(form: NgForm) {
-    this.submittedMess = true;
-    this.submittedRating = true;
 
-    if (form.valid) {
+      this.submittedMess = true;
+      this.submitRating = true;
 
-      this.supportMessage = '';
-      this.submittedMess = false;
-      this.submittedRating = false;
 
-      const toast = await this.toastCtrl.create({
-        message: 'Votre avis a été enregistré',
-        duration: 3000
-      });
-      await toast.present();
-    }
+      if (form.valid && this.clickedRating === true) {
+
+        this.submittedMess = false;
+
+        const toast = await this.toastCtrl.create({
+          message: 'Votre avis a été enregistré',
+          duration: 3000
+        });
+        await toast.present();
+        this.router.navigateByUrl('/tabs/trajet');
+        this.modalCtrl.dismiss();
+      }
+
+
   }
 
 

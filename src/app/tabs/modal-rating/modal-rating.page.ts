@@ -80,7 +80,6 @@ export class ModalRatingPage implements OnInit {
       if (form.valid && this.clickedRating === true) {
 
         this.submittedMess = false;
-
         const toast = await this.toastCtrl.create({
           message: 'Votre avis a été enregistré',
           duration: 3000

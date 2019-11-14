@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TrajetDetailPage } from './trajet-detail.page';
 import {ModalRatingPageModule} from '../modal-rating/modal-rating.module';
 import {ModalRatingPage} from '../modal-rating/modal-rating.page';
+import {ModalComplaintPage} from '../modal-complaint/modal-complaint.page';
 
 
 @NgModule({
@@ -17,10 +18,12 @@ import {ModalRatingPage} from '../modal-rating/modal-rating.page';
   ],
   declarations: [
     TrajetDetailPage,
-    ModalRatingPage]
+    ModalRatingPage,
+    ModalComplaintPage]
     ,
   entryComponents: [
-    ModalRatingPage
+    ModalRatingPage,
+    ModalComplaintPage
   ]
 })
 export class TrajetDetailPageModule {}

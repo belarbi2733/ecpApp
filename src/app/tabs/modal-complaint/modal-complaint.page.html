@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Plainte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">
+
+    <ion-list lines="none">
+      <ion-label position="stacked" color="primary">Expliquez le problème</ion-label>
+      <ion-item>
+        <ion-textarea [(ngModel)]="supportMessage" name="supportQuestion" #supportQuestion="ngModel" rows="6" required></ion-textarea>
+      </ion-item>
+      <ion-text color="danger">
+        <p [hidden]="supportQuestion.valid || submittedMess === false" class="ion-padding-start">
+          Entrez votre explication
+        </p>
+      </ion-text>
+    </ion-list>
+
+
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit">Demander un remboursement</ion-button>
+    </div>
+  </form>
+
+</ion-content>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { TrajetDetailPageModule } from '../tabs/trajet-detail/trajet-detail.module';
 import {ModalRatingPageModule} from '../tabs/modal-rating/modal-rating.module';
+import {ModalComplaintPageModule} from '../tabs/modal-complaint/modal-complaint.module';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
         {
           path: 'modal-rating',
           loadChildren: () => import('../tabs/modal-rating/modal-rating.module').then(m => m.ModalRatingPageModule)
+        },
+        {
+          path: 'modal-complaint',
+          loadChildren: () => import('../tabs/modal-complaint/modal-complaint.module').then(m => m.ModalComplaintPageModule)
         }
 
         ]

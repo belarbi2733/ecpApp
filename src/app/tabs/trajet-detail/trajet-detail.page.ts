@@ -6,6 +6,7 @@ import { UserData } from '../../providers/user-data';
 import { TrajetData } from '../../providers/trajet-data';
 import { Router } from '@angular/router';
 import {ModalRatingPage} from '../modal-rating/modal-rating.page';
+import {ModalComplaintPage} from '../modal-complaint/modal-complaint.page';
 
 
 @Component({
@@ -68,10 +69,7 @@ validate() {
     }
   }
 
-onComplaint(){
-  this.router.navigateByUrl('/tabs/login');
 
-}
 /**
 openModal() {
   let modal = this.modalCtrl.create(ModalRatingPage);
@@ -79,13 +77,19 @@ modal.present();
 }*/
 
 
-async openModal() {
+async openModalRating() {
     const modal = await this.modalCtrl.create({
       component: ModalRatingPage
     });
     return await modal.present();
   }
 
+async openModalComplaint() {
+      const modal = await this.modalCtrl.create({
+        component: ModalComplaintPage
+      });
+      return await modal.present();
+    }
 
 
 

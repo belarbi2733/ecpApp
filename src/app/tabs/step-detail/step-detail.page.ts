@@ -10,13 +10,12 @@ import {ModalComplaintPage} from '../modal-complaint/modal-complaint.page';
 
 
 @Component({
-  selector: 'app-trajet-detail',
-  styleUrls: ['./trajet-detail.page.scss'],
-  templateUrl: 'trajet-detail.page.html'
+  selector: 'app-step-detail',
+  styleUrls: ['./step-detail.page.scss'],
+  templateUrl: 'step-detail.page.html'
 })
 
-export class TrajetDetailPage{
-@ViewChild('trajetList', { static: true }) trajetList: IonList;
+export class StepDetailPage{
 
   session: any = [];
   defaultHref = '';
@@ -40,21 +39,18 @@ export class TrajetDetailPage{
   ionViewWillEnter() {
     this.dataProvider.load().subscribe((data: any) => {
       if (data && data.trajet && data.trajet[0] && data.trajet[0].groups) {
-        const sessionId = this.route.snapshot.paramMap.get('sessionId');
+        const stepId = this.route.snapshot.paramMap.get('stepId');
         for (const group of data.trajet[0].groups) {
           if (group && group.sessions) {
             for (const session of group.sessions) {
-              if (session && session.id === sessionId) {
-                this.session = session;
-                this.isValidate = this.userProvider.hasValidate(
-                  this.session.id
-                );
 
-              }
               if(session && session.steps){
                 for (const step of session.steps){
-                  this.step = step;
-                  this.updateSteps();
+                  if(step && step.id === stepId){
+                    this.step = step;
+                    break;
+                  }
+
                 }
               }
             }
@@ -64,22 +60,25 @@ export class TrajetDetailPage{
     });
   }
 
+
+  /*
+
   updateSteps(){
     this.dataProvider.getSteps(this.dayIndex, this.queryText, this.segment).subscribe((data: any) =>{
       this.shownSteps = data.shownSteps;
     })
   }
-
+*/
   ionViewDidEnter() {
   this.defaultHref = `/tabs/trajet`;
 }
 
-
+/*
 
 sessionClick(item: string) {
   console.log('Clicked', item);
-}
-
+}*/
+/*
 validate() {
     if (this.userProvider.hasValidate(this.session.id)) {
       //add popup déjà validé
@@ -89,9 +88,9 @@ validate() {
       this.isValidate = true;
     }
   }
+*/
 
-
-
+/*
 async openModalRating() {
     const modal = await this.modalCtrl.create({
       component: ModalRatingPage
@@ -105,12 +104,6 @@ async openModalComplaint() {
       });
       return await modal.present();
     }
-
-
-
-
-
-
-
+*/
 
 }

@@ -7,4 +7,20 @@
 </ion-header>
 
 <ion-content>
-<p>Explication de l'application ici</p></ion-content>
+<p>Explication de l'application ici</p>
+
+<ion-list *ngFor="let group of groups" [hidden]="shownSessions === 0">
+  <ion-item-group *ngFor="let session of group.sessions" [hidden]="session.hide" >
+    <ion-item-divider sticky>
+      <ion-label>
+        {{session.type}}
+      </ion-label>
+    </ion-item-divider>
+  </ion-item-group>
+</ion-list>
+
+<ion-list-header [hidden]="shownSessions > 0">
+  Pas de user trouvés
+</ion-list-header>
+
+</ion-content>

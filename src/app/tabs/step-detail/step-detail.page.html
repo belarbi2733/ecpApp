@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
-
+<!---
     <ion-buttons slot="end">
       <ion-button *ngIf="!isValidate"  (click)="validate()" >
         <ion-icon  slot="icon-only" name="checkmark-circle-outline"></ion-icon>
@@ -12,22 +12,25 @@
         <ion-icon slot="icon-only"  name="checkmark-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
-
+-->
     <ion-title>
-      Détail du trajet
+      Détail de l'étape
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <div  *ngIf="session" class="ion-padding">
-    <h1>{{session.cityStart}} &ndash; {{session.cityStop}}</h1>
-    <p *ngIf="session.prix">{{session.prix}}</p>
-    <p *ngIf="session.nbrPassager">nombre de passagers: {{session.nbrPassager}}</p>
-    <ion-text color="medium">
-      {{session.timeStart}} &ndash; {{session.timeEnd}}
-    </ion-text>
 
+  <div  *ngIf="step" class="ion-padding">
+    <h1>{{step.cityStart}} &ndash; {{step.cityStop}}</h1>
+    <p *ngIf="step.prix">{{step.prix}}</p>
+    <p *ngIf="step.nbrPassager">nombre de passagers: {{step.nbrPassager}}</p>
+    <ion-text color="medium">
+      {{step.timeStart}} &ndash; {{step.timeEnd}}
+    </ion-text>
+  </div>
+
+<!--
     <ion-row>
       <ion-col>
         <ion-button  *ngIf="!isValidate" color="success" (click)="validate()" (click)="openModalRating()" expand="block">Valider</ion-button>
@@ -39,24 +42,6 @@
         <p *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalComplaint()"> Un problème lors du trajet?</p>
       </ion-col>
     </ion-row>
-  </div>
-
-
-    <ion-list #trajetList *ngIf="session" [hidden]="shownSteps === 0">
-      <ion-item-group>
-        <ion-item-sliding *ngFor="let step of session.steps" [hidden]="step.hide">
-          <ion-item routerLink ="/tabs/trajet/session/sessionId/step/{{step.id}}">
-            <ion-label>
-              <h3>{{step.cityStart}} &mdash; {{step.cityStop}} </h3>
-              <p>{{step.timeStart}} &mdash; {{step.timeEnd}}</p>
-            </ion-label>
-          </ion-item>
-        </ion-item-sliding>
-      </ion-item-group>
-    </ion-list>
-
-
-
-
+    -->
 
 </ion-content>

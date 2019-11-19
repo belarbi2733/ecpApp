@@ -12,7 +12,7 @@ import { UserData } from './user-data';
 export class TrajetData {
   data: any;
 
-  constructor( public http: HttpClient, public user: UserData) {}
+  constructor( public http: HttpClient) {}
 
   load(): any {
     if (this.data) {
@@ -34,26 +34,46 @@ export class TrajetData {
       const day = data.trajet[dayIndex];
       day.shownSessions = 0;
 
-      queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
+     queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
       const queryWords = queryText.split(' ').filter(w => !!w.trim().length);
 
-      day.groups.forEach((group: any) => {
-        group.hide = false; //change to true
-        day.shownSessions++;
-
-//        group.sessions.forEach((session: any) => {
-          // check if this session should show or not
-  //        this.filterSession(session, queryWords, excludeTracks, segment);
-
-    //      if (!session.hide) {
-            // if this session is not hidden then this group should show
-      //      group.hide = false;
-        //    day.shownSessions++;
-//      }
-  //      });
-      });
-
+       day.groups.forEach((group: any) => {
+         group.sessions.forEach((session:any)=>{
+           session.hide;
+           day.shownSessions++;
+           console.log(day.shownSessions);
+         });
+         });
       return day;
+    })
+  );
+}
+
+getSteps(
+  dayIndex: number,
+  queryText = '',
+  segment = 'all'
+){
+  return this.load().pipe(
+    map((data:any) =>{
+      const tour = data.trajet[dayIndex];
+      tour.shownSteps =0;
+
+      queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
+       const queryWords = queryText.split(' ').filter(w => !!w.trim().length);
+
+       tour.groups.forEach((group: any) => {
+             group.hide = false;
+             group.sessions.forEach((session: any)=>{
+               if(session.steps){
+                 session.steps.forEach((step:any)=>{
+                   tour.shownSteps++;
+                   console.log("tour: " +tour.shownSteps);
+                 });
+               }
+             });
+         });
+         return tour;
     })
   );
 }

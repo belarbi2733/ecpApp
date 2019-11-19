@@ -28,7 +28,8 @@
 
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit">Demander un remboursement</ion-button>
+      <ion-button *ngIf="isClosed" color="dark" disabled expand="block">Demande en traitement</ion-button>
+      <ion-button *ngIf="!isClosed"  expand="block" type="submit">Demander un remboursement</ion-button>
     </div>
   </form>
 

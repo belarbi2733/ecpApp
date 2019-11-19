@@ -16,6 +16,8 @@ export class ModalComplaintPage implements OnInit {
 
   submittedMess = false;
   supportMessage: string;
+  isClosed = false;
+
 
   constructor(
     public modalCtrl: ModalController,
@@ -40,6 +42,8 @@ export class ModalComplaintPage implements OnInit {
   async submit(form: NgForm) {
 
       this.submittedMess = true;
+      this.isClosed = true;
+
 
       if (form.valid ) {
 
@@ -50,7 +54,9 @@ export class ModalComplaintPage implements OnInit {
           duration: 3000
         });
         await toast.present();
+        this.modalCtrl.dismiss();
         this.openModalRating();
+
       }
 }
 }

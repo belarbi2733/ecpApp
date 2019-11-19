@@ -1,0 +1,22 @@
+{
+  "users":[
+    {
+      "groups":[
+        {
+          "sessions":[
+            {
+              "userName": "user1",
+              "password": "pass1",
+              "type": "user"
+            },
+            {
+              "userName": "user2",
+              "password": "pass2",
+              "type": "driver"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

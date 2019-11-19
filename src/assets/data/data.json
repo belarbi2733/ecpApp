@@ -1,6 +1,7 @@
-{  "trajet": [
+{
+  "trajet":[
     {
-      "groups": [
+      "groups":[
         {
           "date": "17-05-2020",
           "sessions": [
@@ -17,39 +18,36 @@
         },
         {
           "date": "02-07-2020",
-          "sessions": [
+          "sessions":[
             {
               "cityStart": "Tournai",
-              "cityStop":"Ostende",
-              "timeStart": "9:30 am",
-              "timeEnd": "9:45 am",
-              "id": "2"
-            },
-            {
-              "cityStart": "Frameries",
-              "cityStop":"Quaregnon",
-              "timeStart": "9:45 am",
-              "timeEnd": "10:00 am",
-              "id": "3"
-            },
-            {
-              "cityStart": "Charleroi",
               "cityStop":"Bruxelles",
-              "timeStart": "9:15 am",
-              "timeEnd": "9:30 am",
-              "id": "4"
-            }
-          ]
-        },
-        {
-          "date": "26-11-2020",
-          "sessions": [
+              "timeStart": "9:30 am",
+              "timeEnd": "12:30 am",
+              "id": "2",
+              "steps": [
+                {
+                  "cityStart": "Tournai",
+                  "cityStop":"Ostende",
+                  "timeStart": "9:30 am",
+                  "timeEnd": "9:45 am",
+                  "id":"4"
+                },
+                {
+                  "cityStart": "Ostende",
+                  "cityStop":"Bruxelles",
+                  "timeStart": "9:45 am",
+                  "timeEnd": "12:30 am",
+                  "id":"5"
+                }
+              ]
+            },
             {
-              "cityStart": "La Louvière",
-              "cityStop":"Binche",
-              "timeStart": "10:00 am",
-              "timeEnd": "10:15 am",
-              "id": "5"
+              "cityStart": "Maubeuge",
+              "cityStop":"Lille",
+              "timeStart": "9:30 am",
+              "timeEnd": "12:30 am",
+              "id": "3"
             }
           ]
         }

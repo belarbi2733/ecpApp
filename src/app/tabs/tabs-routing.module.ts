@@ -4,6 +4,8 @@ import { TabsPage } from './tabs.page';
 import { TrajetDetailPageModule } from '../tabs/trajet-detail/trajet-detail.module';
 import {ModalRatingPageModule} from '../tabs/modal-rating/modal-rating.module';
 import {ModalComplaintPageModule} from '../tabs/modal-complaint/modal-complaint.module';
+import { StepDetailPageModule } from '../tabs/step-detail/step-detail.module';
+
 
 const routes: Routes = [
   {
@@ -33,6 +35,10 @@ const routes: Routes = [
           loadChildren: () => import('../tabs/trajet-detail/trajet-detail.module').then(m => m.TrajetDetailPageModule)
         },
         {
+        path: 'session/sessionId/step/:stepId',
+        loadChildren: () => import('../tabs/step-detail/step-detail.module').then(m => m.StepDetailPageModule)
+        },
+        {
           path: 'modal-rating',
           loadChildren: () => import('../tabs/modal-rating/modal-rating.module').then(m => m.ModalRatingPageModule)
         },
@@ -40,7 +46,6 @@ const routes: Routes = [
           path: 'modal-complaint',
           loadChildren: () => import('../tabs/modal-complaint/modal-complaint.module').then(m => m.ModalComplaintPageModule)
         }
-
         ]
       },
       {

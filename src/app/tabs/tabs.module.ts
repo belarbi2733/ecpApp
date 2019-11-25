@@ -12,6 +12,7 @@ import { TrajetDetailPageModule } from '../tabs/trajet-detail/trajet-detail.modu
 import {ModalRatingPage} from '../tabs/modal-rating/modal-rating.page';
 
 
+
 @NgModule({
   imports: [
     IonicModule,
@@ -19,6 +20,6 @@ import {ModalRatingPage} from '../tabs/modal-rating/modal-rating.page';
     FormsModule,
     TabsPageRoutingModule
   ],
-  declarations: [TabsPage],
+  declarations: [TabsPage]
 })
 export class TabsPageModule {}

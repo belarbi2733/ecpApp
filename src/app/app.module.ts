@@ -13,9 +13,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
-
-
+import {NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ServiceData } from './providers/serviceData';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,12 +25,16 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxQRCodeModule
 ],
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
+    ServiceData,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+
   ],
   bootstrap: [AppComponent]
 })

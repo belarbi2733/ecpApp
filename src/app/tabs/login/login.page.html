@@ -21,14 +21,14 @@
     <form #loginForm="ngForm" novalidate>
       <ion-list>
         <ion-item>
-          <ion-label position="stacked" color="primary">Username</ion-label>
-          <ion-input [(ngModel)]="login.username" type="text" name="username" required #username="ngModel" spellcheck="false" autocapitalize="off">
+          <ion-label position="stacked" color="primary">User Mail</ion-label>
+          <ion-input [(ngModel)]="login.mail" type="text" name="mail" required #mail="ngModel" spellcheck="false" autocapitalize="off">
           </ion-input>
         </ion-item>
 
         <ion-text color="danger">
-          <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
-          Entrez votre nom d'utilisateur
+          <p [hidden]="mail.valid || submitted == false" class="ion-padding-start">
+          Entrez votre mail
         </p>
         </ion-text>
 
@@ -48,7 +48,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button (click)="onLogin(loginForm)" type="submit" expand="block">Login</ion-button>
+          <ion-button  (click)="onLoginBdd()" type="submit" expand="block">Login</ion-button>
         </ion-col>
       </ion-row>
     </form>

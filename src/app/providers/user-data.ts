@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import {UserOptions} from '../interfaces/user-options';
+
 
 
 @Injectable({
@@ -21,13 +23,14 @@ export class UserData {
   groups: any;
   checking: any;
 
+  userServiceUrl= "http://localhost:8080/login";
+  isLog = false;
 
 
   constructor(
     public events: Events,
     public storage: Storage,
-    public http: HttpClient
-        ){}
+    public http: HttpClient ){}
 
     load(): any {
       if (this.data) {
@@ -66,7 +69,7 @@ export class UserData {
       );
     }
 
-    checkDataName(userLogin : string): boolean {
+  /*  checkDataName(userLogin : string): boolean {
 
         this.getInfo(this.userIndex , this.queryText, this.segment).subscribe((data:any)=>{
           this.groups = data.groups;
@@ -80,12 +83,12 @@ export class UserData {
           });
         });return this.userCheck;
 
-    }
+    }*/
 
-  login(username: string): Promise<any> {
-    this.checking=this.checkDataName(username);
+  login(mail: string): Promise<any> {
+  //  this.checking=this.checkDataName(mail);
     return this.storage.set(this.HAS_LOGGED_IN, true).then(() => {
-    this.setUsername(username);
+    this.setUsername(mail);
     return this.events.publish('user:login');
     console.log("logged in");
 
@@ -100,8 +103,8 @@ export class UserData {
     });
   }
 
-  setUsername(username: string): Promise<any> {
-        return this.storage.set('username', username);
+  setUsername(mail: string): Promise<any> {
+        return this.storage.set('mail', mail);
   }
 
   getUsername(): Promise<string> {
@@ -122,6 +125,36 @@ export class UserData {
 
   addValidation(sessionId: string): void {
     this._validatedTrajets.push(sessionId);
+  }
+
+  LoginBdd(data: UserOptions){
+    return new Promise((resolve, reject)=>{
+        this.http.post(this.userServiceUrl, data).subscribe(res=>{
+          console.log('login: '+res);
+          if(res === true){
+            console.log('login success');
+          }
+          else{
+            if(res===false){
+              console.log('login Failed ! ');
+            }
+          }
+          resolve(res);
+        },
+      err=> {
+        console.log('Error occured: '+err);
+        reject();
+      });
+    });
+  }
+
+  loginfunc(){
+    return new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+        this.isLog =true;
+        resolve(true);
+      }, 0);
+    });
   }
 
 

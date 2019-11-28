@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+let User = require('./user');
 
 var app = express();
 app.use(cors({origin: "*"}));
@@ -23,6 +24,27 @@ app.get('/code', function(req, res){
 
   res.json(  randomString(10)); // "7GL9F0ne6t"
   console.log("code here in node! ");
+});
+
+app.post('/login', function (req,res) {
+  User.getUtilisateur(req, function (err, result) {
+    console.log(req.body);
+    console.log('err : ' + err);
+    if (err) {
+      res.status(400).json(err);
+      console.log("Erreur");
+    } else {
+      if(result.rows.length !== 0) { // Check si il y a le mail dans la database
+        if (result.rows[0].password === req.body.password) { //Check si les mots de passes correspondent
+          res.send(true);
+        }
+      }
+      else {
+        res.json(false);
+      }
+    }
+    console.log("getting user in node!");
+  });
 });
 
 app.listen(8080, ()=>{

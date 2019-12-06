@@ -3,6 +3,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 let User = require('./user');
+let Trajet = require('./trajet');
+let Tournee = require('./tournee');
+let TrajetOnly = require('./trajetonly');
+let Car = require('./car');
+
+var jwt = require('jsonwebtoken');
+var db = require("./config/config.js");
+
 
 var app = express();
 app.use(cors({origin: "*"}));
@@ -28,7 +36,6 @@ app.get('/code', function(req, res){
 
 app.post('/login', function (req,res) {
   User.getUtilisateur(req, function (err, result) {
-    console.log(req.body);
     console.log('err : ' + err);
     if (err) {
       res.status(400).json(err);
@@ -46,6 +53,78 @@ app.post('/login', function (req,res) {
     console.log("getting user in node!");
   });
 });
+
+app.post('/getUserId', function (req,res) {
+  User.getIdUtilisateurByMail(req.body.mail, function (err, result) {
+    if(err) {
+      res.status(400).json(err);
+      console.log("Erreur in getId");
+    }
+    else {
+      if(result.rows.length !== 0) {
+        console.log("getId Ok : " + result.rows[0].id);
+        res.json(result.rows[0].id);
+      }
+    }
+  })
+});
+
+app.post('/getIdCar', function(req, res){
+  Car.getIdCar(req, function (err, result) {
+    if(err) {
+      res.status(400).json(err);
+      console.log("Erreur in getIdCar");
+    }
+    else {
+      if(result.rows.length !== 0) {
+        console.log("getIdCar Ok : " + result.rows[0].id);
+        res.json(result.rows[0].id);
+      }
+    }
+  })
+});
+
+ app.post('/trajet', function(req, res){
+   Trajet.getTrajet(req, function(err, result){
+     console.log(req.body.idUser);
+     console.log('err: '+err);
+     if(err){
+       res.status(400).json(err);
+       console.log("Erreur");
+     }else{
+       res.json(result.rows);
+     }
+     console.log("getting traject in node!");
+   });
+ });
+
+ app.post('/trajetOnly', function(req, res){
+   TrajetOnly.getTrajetOnly(req, function(err, result){
+     console.log(req.body.idUser);
+     console.log('err: '+err);
+     if(err){
+       res.status(400).json(err);
+       console.log("Erreur");
+     }else{
+       res.json(result.rows);
+     }
+     console.log("getting  Only trajet in node!");
+   });
+ });
+
+ app.post('/tournee', function(req, res){
+   Tournee.getTournee(req, function(err, result){
+     console.log(req.body.idUser);
+     console.log('err: '+err);
+     if(err){
+       res.status(400).json(err);
+       console.log("Erreur");
+     }else{
+       res.json(result.rows);
+     }
+     console.log("getting tournee in node!");
+   });
+ });
 
 app.listen(8080, ()=>{
     console.log("Starting server, and watching 8080...");

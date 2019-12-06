@@ -5,8 +5,12 @@ let Utilisateur = {
 
     getUtilisateur: function(utilisateur, callback)
     {
-      console.log("getUser : " + utilisateur.body.mail);
-      return db.query('SELECT password FROM utilisateur WHERE mail = $1', [utilisateur.body.mail],callback);
+      return db.query('SELECT * FROM utilisateur WHERE mail = $1', [utilisateur.body.mail],callback);
+    },
+
+    getIdUtilisateurByMail: function(mail, callback)
+    {
+      return db.query('SELECT id FROM utilisateur WHERE mail = $1', [mail], callback);
     }
 };
 

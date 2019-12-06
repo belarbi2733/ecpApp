@@ -14,13 +14,32 @@
     </ion-buttons>
 -->
     <ion-title>
-      Détail de l'étape
+      Détail de la tournée
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
+  <ion-list #tourneeList [hidden]="shownSessions == 0">
+    <ion-item-group *ngFor= "let info of Info" >
+      <ion-item-sliding>
+        <ion-item routerLink="/tabs/trajet/BddTour/bddId/step/{{info.id}}">
+          <ion-label>
+            <h3>{{info.depart}} &mdash; {{info.arrivee}} </h3>
+            <p>
+          <!--    {{info.timeStart}} &mdash; {{info.timeEnd}}-->
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
 
+  <ion-list-header [hidden]="shownSessions > 0">
+    Désolé, il semble qu'il n'y a aucuns trajets associés à cette tournée
+  </ion-list-header>
+
+<!---
   <div  *ngIf="step" class="ion-padding">
     <h1>{{step.cityStart}} &ndash; {{step.cityStop}}</h1>
     <p *ngIf="step.prix">{{step.prix}}</p>
@@ -29,7 +48,7 @@
       {{step.timeStart}} &ndash; {{step.timeEnd}}
     </ion-text>
   </div>
-
+--->
 <!--
     <ion-row>
       <ion-col>

@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
+    "localStorage": "^1.0.4",
     "method-override": "^2.3.6",
     "mongoose": "^5.7.12",
     "morgan": "^1.7.0",

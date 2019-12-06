@@ -23,6 +23,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'logout',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../tabs/login/login.module').then(m => m.LoginPageModule)
+          }
+        ]
+      },
+      {
         path: 'trajet',
         children: [
           {
@@ -31,12 +41,16 @@ const routes: Routes = [
               import('../tabs/trajet/trajet.module').then(m => m.TrajetPageModule)
           },
           {
-          path: 'session/:sessionId',
+          path: 'BddTraj/:bddId',
           loadChildren: () => import('../tabs/trajet-detail/trajet-detail.module').then(m => m.TrajetDetailPageModule)
         },
         {
-        path: 'session/sessionId/step/:stepId',
+        path: 'BddTour/:bddId',
         loadChildren: () => import('../tabs/step-detail/step-detail.module').then(m => m.StepDetailPageModule)
+      },
+        {
+        path: 'BddTour/bddId/step/:stepId',
+        loadChildren: () => import('../tabs/trajet-detail/trajet-detail.module').then(m => m.TrajetDetailPageModule)
         },
         {
           path: 'modal-rating',

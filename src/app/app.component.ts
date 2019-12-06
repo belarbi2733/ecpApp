@@ -35,8 +35,9 @@ export class AppComponent {
   }
 
   async ngOnInit() {
-  this.checkLoginStatus();
-  this.listenForLoginEvents();
+//  this.checkLoginStatus();
+//  this.listenForLoginEvents();
+
 }
 
   initializeApp() {
@@ -45,7 +46,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
+/*
   checkLoginStatus() {
     return this.userData.isLoggedIn().then(loggedIn => {
       return this.updateLoggedInStatus(loggedIn);
@@ -67,6 +68,6 @@ export class AppComponent {
       this.updateLoggedInStatus(false);
     });
   }
-
+*/
 
 }

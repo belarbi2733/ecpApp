@@ -11,7 +11,8 @@ import { UserOptions } from '../../interfaces/user-options';
   styleUrls: ['login.page.scss']
 })
 export class LoginPage {
-  login: UserOptions = { mail: '', password: '' };
+
+  login: UserOptions = { mail: '', password: ''};
   submitted=false;
   loginFailed: string;
   loginStatus: boolean;
@@ -19,23 +20,39 @@ export class LoginPage {
   constructor(
     public userData: UserData,
     public router: Router
-  ) { }
+  ) {
+    this.loginStatus = this.userData.isLog;
+ }
 
   ngOnInit(){
-    this.loginStatus = this.userData.isLog;
+    console.log("login status: " + this.loginStatus);
   }
 
   onLogin(form: NgForm){
     this.submitted=true;
     if(form.valid){
-      this.userData.login(this.login.mail);
-      this.router.navigateByUrl('/tabs/trajet');
+      this.onLoginBdd();
+    //  this.userData.login(this.login.mail);
+    //  this.router.navigateByUrl('/tabs/trajet');
     }
   }
 
   onLoginBdd(){
     this.userData.LoginBdd(this.login).then((validationStatus: boolean)=>{
       this.onLoginfunc(validationStatus);
+      if (validationStatus) {  // Si l'authentification est vérifiée
+          // On sauvegarde l'idUser en variable de session avec localStorage
+          this.userData.getIdForLocalStorage(this.login).then((idUser: number) => {
+            console.log('idUser : ' + idUser);
+            const idJson = {id: idUser};
+            localStorage.setItem('idUser', JSON.stringify(idJson));
+            console.log(localStorage);
+            this.router.navigateByUrl('/tabs/trajet');
+          })
+            .catch(() => {
+              console.log('Error in getIdForLocalStorage');
+            });
+        }
     }).catch(()=>{
       this.loginFailed = 'Erreur avec la DataBase';
     });
@@ -47,7 +64,7 @@ export class LoginPage {
       case true:{
         this.userData.loginfunc().then(()=>{
           this.loginStatus = this.userData.isLog;
-          this.router.navigateByUrl('/tabs/trajet');
+          console.log("login status: " + this.loginStatus);
         }); break;
       }
       case false: {

@@ -1,12 +1,14 @@
 import { Component,ViewChild } from '@angular/core';
 import { ModalController, IonList } from '@ionic/angular';
-
 import { ActivatedRoute } from '@angular/router';
 import { UserData } from '../../providers/user-data';
-import { TrajetData } from '../../providers/trajet-data';
 import { Router } from '@angular/router';
 import {ModalRatingPage} from '../modal-rating/modal-rating.page';
 import {ModalComplaintPage} from '../modal-complaint/modal-complaint.page';
+import { TourneeOptions } from '../../interfaces/tournee-options';
+import { TourneeData } from '../../providers/tournee-data';
+import { TrajetOptions } from '../../interfaces/trajet-options';
+import { TrajetData } from '../../providers/trajet-data';
 
 
 @Component({
@@ -16,15 +18,23 @@ import {ModalComplaintPage} from '../modal-complaint/modal-complaint.page';
 })
 
 export class StepDetailPage{
+  @ViewChild('tourneeList', { static: true }) tourneeList: IonList;
+
 
   session: any = [];
   defaultHref = '';
   isValidate = false;
   step: any = [];
+  bddTraj: any =[];
+  Info: any =[];
+  info: any =[];
   dayIndex = 0;
   queryText = '';
   segment = 'all';
-  shownSteps: any = [];
+  shownSessions: any = 0;
+  tournee: TourneeOptions=  { idUser: null, depart: '', arrivee: '', date: '', id: null};
+  trajet: TourneeOptions=  { idUser: null, depart: '', arrivee: '', date: '', id: null};
+
 
 
   constructor(
@@ -32,11 +42,15 @@ export class StepDetailPage{
   public router: Router,
   private userProvider: UserData,
   private route: ActivatedRoute,
-  public modalCtrl: ModalController
-
+  public modalCtrl: ModalController,
+  public trajData: TrajetData
   ){}
 
-  ionViewWillEnter() {
+
+
+  ngOnInit() {
+    this.TrajetBdd();
+    /*
     this.dataProvider.load().subscribe((data: any) => {
       if (data && data.trajet && data.trajet[0] && data.trajet[0].groups) {
         const stepId = this.route.snapshot.paramMap.get('stepId');
@@ -57,9 +71,34 @@ export class StepDetailPage{
           }
         }
       }
-    });
+    });*/
   }
 
+  TrajetBdd(){
+    let bddId: any = this.route.snapshot.paramMap.get('bddId');
+    bddId=parseInt(bddId);
+    this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
+
+    this.trajData.getTrajetbdd(this.trajet).then((response)=>{
+      console.log('get: ', response);
+      this.bddTraj = response;
+      this.bddTraj.forEach((BddTraj: any)=>{
+        console.log(BddTraj.id_tournee )
+        if(BddTraj.id_tournee === bddId){
+          this.Info.push(BddTraj);
+          this.shownSessions++;
+          console.log('depart: ', BddTraj.depart);
+          console.log('arrivee: ', BddTraj.arrivee)
+          console.log( this.Info);
+        }
+        for( const info of this.Info){
+          this.info = info;
+          console.log( this.info);
+        }
+
+      });
+    });
+  }
 
   /*
 

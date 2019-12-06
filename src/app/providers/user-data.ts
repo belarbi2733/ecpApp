@@ -24,13 +24,21 @@ export class UserData {
   checking: any;
 
   userServiceUrl= "http://localhost:8080/login";
+  userIdUrl= "http://localhost:8080/getUserId";
   isLog = false;
 
 
   constructor(
     public events: Events,
     public storage: Storage,
-    public http: HttpClient ){}
+    public http: HttpClient ){
+      if (localStorage.length !== 0) {
+      this.isLog = JSON.parse(localStorage.getItem('isLog')).isLog;
+      console.log(this.isLog );
+    } else {
+      this.isLog = false;
+    }
+    }
 
     load(): any {
       if (this.data) {
@@ -121,6 +129,7 @@ export class UserData {
 
   hasValidate(sessionId: string): boolean {
   return (this._validatedTrajets.indexOf(sessionId) > -1);
+  //mettre en DB ???
   }
 
   addValidation(sessionId: string): void {
@@ -151,9 +160,44 @@ export class UserData {
   loginfunc(){
     return new Promise((resolve, reject)=>{
       setTimeout(()=>{
+        this.events.publish('user:login');
         this.isLog =true;
+        this.setUpBooleanLog(); // Remplissage de localStorage
         resolve(true);
       }, 0);
+    });
+  }
+
+  logoutfunc(){
+    return new Promise((resolve, reject)=>{
+      this.isLog=false;
+      this.events.publish('user:logout');
+      localStorage.clear();
+      const isLogJson = {isLog: false};
+      localStorage.setItem('isLog', JSON.stringify(isLogJson)); // Stockage de is Log par défaut dans localstorage
+
+      const idJson = {id: -1};
+      localStorage.setItem('idUser', JSON.stringify(idJson)); // Stockage de idUser par défaut dans localstorage
+    })
+  }
+
+  setUpBooleanLog() {
+    const isLogJson = {isLog: this.isLog};
+    localStorage.setItem('isLog', JSON.stringify(isLogJson)); // Stockage de is Log dans localstorage
+    console.log(localStorage);
+  }
+
+  getIdForLocalStorage(data: UserOptions) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.userIdUrl, data).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          console.log('Error occured in getId:' + err);
+          reject();
+        }
+      );
     });
   }
 

@@ -20,13 +20,15 @@
 </ion-header>
 
 <ion-content >
-  <div  *ngIf="session" class="ion-padding">
-    <h1>{{session.cityStart}} &ndash; {{session.cityStop}}</h1>
-    <p *ngIf="session.prix">{{session.prix}}</p>
-    <p *ngIf="session.nbrPassager">nombre de passagers: {{session.nbrPassager}}</p>
+  <div  *ngIf="info" class="ion-padding">
+    <h1>{{info.depart}} &ndash; {{info.arrivee}}</h1>
+    <!---
+    <p *ngIf="Bdd.prix">{{Bdd.prix}}</p>
+    <p *ngIf="Bdd.nbrPassager">nombre de passagers: {{Bdd.nbrPassager}}</p>
     <ion-text color="medium">
-      {{session.timeStart}} &ndash; {{session.timeEnd}}
+      {{Bdd.timeStart}} &ndash; {{Bdd.timeEnd}}
     </ion-text>
+    --->
 
     <ion-row>
       <ion-col>
@@ -41,7 +43,7 @@
     </ion-row>
   </div>
 
-
+<!---
     <ion-list #trajetList *ngIf="session" [hidden]="shownSteps === 0">
       <ion-item-group>
         <ion-item-sliding *ngFor="let step of session.steps" [hidden]="step.hide">
@@ -54,7 +56,7 @@
         </ion-item-sliding>
       </ion-item-group>
     </ion-list>
-
+--->
 
 
 

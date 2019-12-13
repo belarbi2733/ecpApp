@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import {NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ServiceData } from './providers/serviceData';
+import { PositionService } from './providers/position';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,10 +31,12 @@ import { ServiceData } from './providers/serviceData';
     NgxQRCodeModule
 ],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     BarcodeScanner,
     ServiceData,
+    PositionService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
 
   ],

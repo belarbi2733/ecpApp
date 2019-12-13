@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Scan QR Code
+      Map
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,13 +9,12 @@
 <ion-content>
 
 
+  <button ion-button (click)="watch()">GetLoc</button>
+    <p>{{data}}</p>
+    <div *ngFor='let coords of locTab'>
+      {{coords}}
+    </div>
 
-
-  <ion-card *ngIf="scannedCode">
-    <ion-card-content>
-     Result from Scan: {{ scannedCode}}
-  </ion-card-content>
-  </ion-card>
 
 </ion-content>
 

@@ -40,6 +40,12 @@ app.get('/code', function(req, res){
   console.log("code here in node! ");
 });
 
+app.get('/position', (req, res)=>{
+    let lat = req.query['lat'];
+    let long = req.query['long'];
+    console.log(lat+ '\t'+ long);
+});
+
 app.post('/getCode', function(req, res){
   Trajet.getCode(req, function(err, result){
     console.log('err: '+err);

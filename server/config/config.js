@@ -2,10 +2,9 @@ let pg = require("pg");
 
 let config = {
   user: 'postgres',
-  database: 'ecp',
+  database: 'ECP',
   password: 'postgremdp',
-  port: 5432,
-  jwtSecret:'stuff here'
+  port: 5432
 };
 
 let pool = new pg.Pool(config);

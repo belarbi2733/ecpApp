@@ -23,7 +23,7 @@
   <ion-list #tourneeList [hidden]="shownSessions == 0">
     <ion-item-group *ngFor= "let info of Info" >
       <ion-item-sliding>
-        <ion-item routerLink="/tabs/trajet/BddTour/bddId/step/{{info.id}}">
+        <ion-item color = "light" routerLink="/tabs/trajet/BddTour/bddId/step/{{info.id}}">
           <ion-label>
             <h3>{{info.depart}} &mdash; {{info.arrivee}} </h3>
             <p>

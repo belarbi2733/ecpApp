@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+      <ion-back-button  (click)= "goBack()"></ion-back-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
@@ -25,6 +25,18 @@
     <!---
     <p *ngIf="Bdd.prix">{{Bdd.prix}}</p>
     <p *ngIf="Bdd.nbrPassager">nombre de passagers: {{Bdd.nbrPassager}}</p>
+--->
+    <ion-list *ngFor="let Colis of colis" [hidden]="Colis.hide">
+      <h3>Colis:</h3>
+      <ion-item>
+        <ion-label>
+          <h4>{{Colis.nom}}</h4>
+          <p *ngIf="Colis.poids">{{Colis.poids}} Kg</p>
+          <p *ngIf="Colis.dimension">{{Colis.dimension}} </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <!---
     <ion-text color="medium">
       {{Bdd.timeStart}} &ndash; {{Bdd.timeEnd}}
     </ion-text>
@@ -32,12 +44,13 @@
 
     <ion-row>
       <ion-col>
-        <ion-button  *ngIf="!isValidate" color="success" (click)="validate()" (click)="openModalRating()" expand="block">Valider</ion-button>
+        <ion-button  *ngIf="!isValidate" color="success" (click)="validate()" (click)="qrcode()" expand="block">Valider</ion-button>
         <ion-button *ngIf="isValidate" color="dark" disabled expand="block">Trajet clôturé</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
+        <h5 *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalRating()"><ion-icon name="thumbs-up"></ion-icon> Donnez votre avis</h5>
         <p *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalComplaint()"> Un problème lors du trajet?</p>
       </ion-col>
     </ion-row>

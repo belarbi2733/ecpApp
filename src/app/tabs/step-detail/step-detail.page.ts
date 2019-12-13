@@ -10,6 +10,7 @@ import { TourneeData } from '../../providers/tournee-data';
 import { TrajetOptions } from '../../interfaces/trajet-options';
 import { TrajetData } from '../../providers/trajet-data';
 
+let resp: any;
 
 @Component({
   selector: 'app-step-detail',
@@ -31,9 +32,11 @@ export class StepDetailPage{
   dayIndex = 0;
   queryText = '';
   segment = 'all';
+  idCar= false;
+
   shownSessions: any = 0;
-  tournee: TourneeOptions=  { idUser: null, depart: '', arrivee: '', date: '', id: null};
-  trajet: TourneeOptions=  { idUser: null, depart: '', arrivee: '', date: '', id: null};
+  tournee: TourneeOptions=  { idUser: null,idCar: null, depart: '', arrivee: '', date: '', id: null};
+  trajet: TrajetOptions=  { idUser: null, idColis: null,idTour: null, depart: '', arrivee: '', date: '', id: null, code: null};
 
 
 
@@ -42,6 +45,7 @@ export class StepDetailPage{
   public router: Router,
   private userProvider: UserData,
   private route: ActivatedRoute,
+  public tourData: TourneeData,
   public modalCtrl: ModalController,
   public trajData: TrajetData
   ){}
@@ -49,7 +53,14 @@ export class StepDetailPage{
 
 
   ngOnInit() {
-    this.TrajetBdd();
+    this.getIdCar();
+
+
+      this.getIdTour();
+      setTimeout(()=>{
+        this.TrajetBdd();
+      }, 200);
+
     /*
     this.dataProvider.load().subscribe((data: any) => {
       if (data && data.trajet && data.trajet[0] && data.trajet[0].groups) {
@@ -74,12 +85,15 @@ export class StepDetailPage{
     });*/
   }
 
+
+
   TrajetBdd(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
-
-    this.trajData.getTrajetbdd(this.trajet).then((response)=>{
+    console.log("idTourr33: "+ this.trajet.idTour)
+    console.log (typeof this.trajet.idTour)
+    this.trajData.getTrajetAllbdd(this.trajet).then((response)=>{
       console.log('get: ', response);
       this.bddTraj = response;
       this.bddTraj.forEach((BddTraj: any)=>{
@@ -100,6 +114,32 @@ export class StepDetailPage{
     });
   }
 
+  getIdTour(){
+    let bddId: any = this.route.snapshot.paramMap.get('bddId');
+    bddId=parseInt(bddId);
+    this.trajet.idTour = bddId;
+  }
+
+  getIdCar(){
+    this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id;
+    console.log(this.trajet.idUser);
+
+    this.tourData.getIdCarbdd(this.trajet).then((response)=>{
+      console.log('get Car: ', response);
+      if(response != null){
+        this.idCar=true;
+
+        let respo= JSON.stringify(response);
+        let resp = parseInt(respo);
+        this.tournee.idCar = resp;
+        console.log('get Car: ', this.tournee.idCar);
+      }
+      else{console.log("passager")}
+    }).catch(() => {
+      console.log('Error in getIdCar');
+    });
+  }
+
   /*
 
   updateSteps(){
@@ -110,6 +150,7 @@ export class StepDetailPage{
 */
   ionViewDidEnter() {
   this.defaultHref = `/tabs/trajet`;
+  
 }
 
 /*

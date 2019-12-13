@@ -5,6 +5,7 @@ import { Events, MenuController, Platform,  ToastController } from '@ionic/angul
 import { Storage } from '@ionic/storage';
 
 import { UserData } from '../providers/user-data';
+import { TourneeOptions } from '../interfaces/tournee-options';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { UserData } from '../providers/user-data';
 })
 export class TabsPage {
   loggedIn = false;
+  tournee: TourneeOptions=  { idUser: null,idCar: null, depart: '', arrivee: '', date: '', id: null};
+
   constructor(
     private events: Events,
     private userData: UserData,
@@ -58,7 +61,7 @@ export class TabsPage {
   }
 
   listenForLoginEvents() {
-    
+
     this.events.subscribe('user:login', () => {
       this.updateLoggedInStatus(true);
     });
@@ -71,6 +74,7 @@ export class TabsPage {
   logout() {
    this.userData.logoutfunc().then(() => {
       return this.loggedIn= this.userData.isLog;
+      this.tournee.idCar =null;
       return this.router.navigateByUrl('/tabs/login');
     });
   }

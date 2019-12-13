@@ -17,12 +17,26 @@ export class TourneeData{
   tourneeServiceUrl = "http://localhost:8080/tournee";
   trajetOnlyServiceUrl = "http://localhost:8080/trajetOnly";
   IdCarServiceUrl = "http://localhost:8080/getIdCar";
+  tourneeAllServiceUrl = "http://localhost:8080/tourneeAll";
+  tourneeIDServiceUrl = "http://localhost:8080/getIdTournee";
 
   constructor(public http: HttpClient){}
 
   getTourneebdd(data: TourneeOptions){
     return new Promise((resolve, reject)=>{
       this.http.post(this.tourneeServiceUrl, data).subscribe(res=>{
+        resolve(res);
+      },
+    err=>{
+      console.log('Error occured: '+err);
+      reject();
+    });
+  });
+  }
+
+  getTourneeAllbdd(data: TrajetOptions){
+    return new Promise((resolve, reject)=>{
+      this.http.post(this.tourneeAllServiceUrl, data).subscribe(res=>{
         resolve(res);
       },
     err=>{
@@ -52,6 +66,20 @@ export class TourneeData{
         },
         err => {
           console.log('Error occured in getIdCar:' + err);
+          reject();
+        }
+      );
+    });
+  }
+
+  getIdTourbdd(data: TourneeOptions){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.tourneeIDServiceUrl, data).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          console.log('Error occured in getIdTour:' + err);
           reject();
         }
       );

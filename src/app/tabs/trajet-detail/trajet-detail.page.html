@@ -22,10 +22,9 @@
 <ion-content >
   <div  *ngIf="info" class="ion-padding">
     <h1>{{info.depart}} &ndash; {{info.arrivee}}</h1>
-    <!---
-    <p *ngIf="Bdd.prix">{{Bdd.prix}}</p>
-    <p *ngIf="Bdd.nbrPassager">nombre de passagers: {{Bdd.nbrPassager}}</p>
---->
+    <p *ngIf="info.prix">{{info.prix}}</p>
+    <p *ngIf="info.book_places">nombre de passagers: {{info.book_places}}</p>
+
     <ion-list *ngFor="let Colis of colis" [hidden]="Colis.hide">
       <h3>Colis:</h3>
       <ion-item>

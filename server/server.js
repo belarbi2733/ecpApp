@@ -43,9 +43,39 @@ app.get('/code', function(req, res){
 app.get('/position', (req, res)=>{
     let lat = req.query['lat'];
     let long = req.query['long'];
-    console.log(lat+ '\t'+ long);
+    let idUser = req.query['idUser'];
+    console.log(lat+ '\t'+ long+ '\t' + idUser);
+    User.addPosition(req, function(err, result){
+      console.log('err: '+err);
+      if(err) {
+        res.status(400).json(err);
+        console.log("Erreur");
+      }
+      else {
+        // console.log(result);
+        res.send(true);
+      }
+      console.log("adding position in node!");
+    });
 });
 
+app.post('/addposition',function (req,res) {
+  // console.log(req.body);
+  User.addPosition(req.body,function (err,result) {
+    console.log('err: '+err);
+    if(err) {
+      res.status(400).json(err);
+      console.log("Erreur");
+
+    }
+    else {
+      // console.log(result);
+      res.send(true);
+    }
+    console.log("adding position in node!");
+
+  });
+});
 app.post('/getCode', function(req, res){
   Trajet.getCode(req, function(err, result){
     console.log('err: '+err);
@@ -276,6 +306,7 @@ app.post('/colis', function(req, res){
      console.log("getting tourneeAll in node!");
    });
  });
+
 
 
 app.listen(8080, ()=>{

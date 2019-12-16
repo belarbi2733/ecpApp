@@ -30,7 +30,7 @@ export class TrajetPage {
   tournee: TourneeOptions=  { idUser: null,idCar: null, depart: '', arrivee: '', date: '', id: null};
   idCar= false;
   tourneeList: any=[];
-
+  heure_arrivee= null;
   constructor(
     private events: Events,
     public router: Router,
@@ -135,18 +135,7 @@ export class TrajetPage {
     });
   }
 
-  getTourneeAll(tourId : any ){
-    console.log("id tour: "+tourId.idTour)
-    this.tourData.getTourneeAllbdd(tourId).then((response)=>{
-      console.log('get tournee: ', response);
-      this.tourneeList = response;
-      this.tourneeList.forEach((Tournee: any)=>{
-        console.log("idTournee "+ Tournee.id_tournee);
-        this.shownSessions++;
-        Tournee.hide;
-      });
-    });
-  }
+
 
   TourneeBdd(){
     this.tournee.idUser = JSON.parse(localStorage.getItem('idUser')).id;
@@ -161,7 +150,8 @@ export class TrajetPage {
 
         console.log('depart: ', BddTour.depart);
         console.log('arrivee: ', BddTour.arrivee);
-
+        this.heure_arrivee= BddTour.heure_depart + BddTour.duree;
+        console.log(this.heure_arrivee);
         BddTour.hide;
       });
     });

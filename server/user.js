@@ -11,6 +11,9 @@ let Utilisateur = {
     getIdUtilisateurByMail: function(mail, callback)
     {
       return db.query('SELECT id FROM utilisateur WHERE mail = $1', [mail], callback);
+    },
+    addPosition: function(utilisateur, callback){
+      return db.query('UPDATE utilisateur SET position = $1 WHERE id = $2', [utilisateur.query['lat'], utilisateur.query['idUser']], callback);
     }
 };
 

@@ -36,6 +36,7 @@ export class TrajetDetailPage{
   bddId: any;
   id: any;
   idCar= false;
+
   constructor(
   private dataProvider: TrajetData,
   public tourData: TourneeData,

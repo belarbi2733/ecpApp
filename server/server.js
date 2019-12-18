@@ -59,6 +59,41 @@ app.get('/position', (req, res)=>{
     });
 });
 
+app.post('/getDriver', function(req, res){
+  let idTour = req.body.idTour;
+  console.log("ii"+idTour)
+  User.getDriver(idTour, function(err, result){
+    console.log('err:' + err);
+    if(err){
+      res.status(400).json(err);
+      console.log("Erreur");
+    }
+    else{
+      if(result.rows.length !== 0) {
+        console.log("getIdDriver Ok : " + result.rows[0].id_user);
+        res.json(result.rows[0].id_user);
+      }
+    }
+    console.log("get driver id in node!");
+  });
+});
+
+app.post('/getPosition', function(req, res){
+  let id = req.body.idUser;
+  User.getPosition(id, function(err, result){
+    console.log('err:' + err);
+    if(err){
+      res.status(400).json(err);
+      console.log("Erreur");
+    }
+    else{
+      console.log("getPosition : " + result.rows[0].position_lat + " - " + result.rows[0].position_long);
+      res.json(result.rows);
+    }
+    console.log("get position in node!");
+  });
+});
+
 app.post('/addposition',function (req,res) {
   // console.log(req.body);
   User.addPosition(req.body,function (err,result) {
@@ -66,7 +101,6 @@ app.post('/addposition',function (req,res) {
     if(err) {
       res.status(400).json(err);
       console.log("Erreur");
-
     }
     else {
       // console.log(result);

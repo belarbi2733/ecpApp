@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PositionService } from '../../providers/position';
+import { ActivatedRoute } from '@angular/router';
+import { TrajetOptions } from '../../interfaces/trajet-options';
+import { TrajetData } from '../../providers/trajet-data';
+
+
+
+
 
 declare let L;
 declare let tomtom: any;
@@ -12,8 +19,13 @@ declare let tomtom: any;
 })
 export class Tab3Page {
 
-  constructor(private geolocation: Geolocation, private posApi:PositionService){
-}
+  constructor(
+    private geolocation: Geolocation,
+    private posApi:PositionService,
+    private route: ActivatedRoute,
+    private trajData: TrajetData
+){}
+
   locTab:String[]= [];
   data:string = '';
   lat: any;
@@ -21,14 +33,20 @@ export class Tab3Page {
   map: any;
   marker: any;
   id: number;
-  ngOnInit(){
-  this.watch();
+  trajet: TrajetOptions=  { idUser: null, idColis: null,idTour: null, depart: '', arrivee: '', date: '', id: null, code: null};
+  User: any;
+  Posi: any;
+  newmark: any[]=[];
 
+  ngOnInit(){
+  //  this.getDriverId();
+    this.beAware();
+    this.watch();
   }
 
   maping(lat, long){
      const map = tomtom.L.map('myMap', {
-      key: 'LUsOnGPl0AFOpcXNL3kdfgx3cU2qA4jE',
+      key: 'X4yRaq0tGtRPAIMAmb0X7wpzW6dAGKQE',
       basePath: '../../../assets/tomtom',
       center: [lat, long],
       zoom: 15
@@ -43,13 +61,20 @@ export class Tab3Page {
 
   maping2(lat, long, map){
     map.removeLayer(this.marker);
-    var title = 'babla';
+    var title = 'Vous';
     var marker = tomtom.L.marker(new tomtom.L.LatLng(lat, long), {title: title});
     marker.bindPopup(title);
     map.addLayer(marker);
     this.marker= marker;
   }
 
+  beAware(){
+    const watch = this.geolocation.watchPosition({enableHighAccuracy: true, timeout: 1000}).subscribe(position =>{
+      this.getUsersId();
+    });
+  }
+
+  //Regarde en temps réel la position de l'utilisateur de l'appareil
   watch(){
     let i =0;
     const watch = this.geolocation.watchPosition({enableHighAccuracy : true, timeout : 1000}).subscribe(position =>{
@@ -72,14 +97,66 @@ export class Tab3Page {
     });
 
   }
+  //Sauve la position de l'utilisateur dans la DB
   positionSend(lat, long){
     this.id = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
     this.posApi.sendPosition(lat, long, this.id).subscribe((response)=>{
       console.log(response);
     });
   }
+  //Cherche l'id du conducteur en charge du trajet
+  getDriverId(){
+    let idTour: any = this.route.snapshot.paramMap.get('idTour');
+    idTour = parseInt(idTour);
+    this.trajet.idTour = idTour;
+    this.posApi.getDriverbdd(this.trajet).then((response)=>{
+      console.log(response);
+      this.getPosition(response);
+    });
+  }
+//Cherche les Id de tous les utilisateurs concernés par une tournée
+  getUsersId(){
+    let idTour: any = this.route.snapshot.paramMap.get('idTour');
+    idTour = parseInt(idTour);
+    this.trajet.idTour = idTour;
+    this.trajData.getTrajetAllbdd(this.trajet).then((response)=>{
+    this.User= response
+    this.User.forEach((user: any)=>{
+        this.getPosition(user.id_user);
+        });
+    });
+  }
+
+  //Cherche la position des utilisateurs et l'affiche sur la map
+  getPosition(id){
+    this.trajet.idUser= id;
+    this.posApi.getPositionbdd(this.trajet).then((response)=>{
+      console.log(response);
+      this.Posi = response;
+      this.Posi.forEach((posi: any)=>{
+        console.log(posi.prenom)
+        this.maping3(posi.position_lat, posi.position_long, this.map, posi.prenom);
+      });
+    });
+  }
+
+  maping3(lat, long, map, name){
+    this.newmark.forEach((mark: any)=>{
+      if(mark.options.title== name){
+        map.removeLayer(mark);
+      }
+    })
+
+    console.log("add")
+    var title = name;
+    var marker = tomtom.L.marker(new tomtom.L.LatLng(lat, long), {title: title});
+    marker.bindPopup(title);
+    map.addLayer(marker);
+    this.newmark.push(marker);
+  }
 
 }
+
   /*
   onSuccess(position){
     let lattitude=position.coords.lattiude;

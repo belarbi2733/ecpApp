@@ -13,7 +13,13 @@ let Utilisateur = {
       return db.query('SELECT id FROM utilisateur WHERE mail = $1', [mail], callback);
     },
     addPosition: function(utilisateur, callback){
-      return db.query('UPDATE utilisateur SET position = $1 WHERE id = $2', [utilisateur.query['lat'], utilisateur.query['idUser']], callback);
+      return db.query('UPDATE utilisateur SET position_lat = $1, position_long = $2 WHERE id = $3', [utilisateur.query['lat'], utilisateur.query['long'], utilisateur.query['idUser']], callback);
+    },
+    getDriver: function(idTour, callback){
+      return db.query('select id_user from voiture where id = (select id_voiture from tournee where id = $1)',[idTour], callback);
+    },
+    getPosition: function(id, callback){
+      return db.query('Select position_lat, position_long, prenom from utilisateur where id = $1', [id], callback);
     }
 };
 

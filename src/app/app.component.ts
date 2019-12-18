@@ -9,7 +9,10 @@ import { Events } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
 
-import { UserData } from './providers/user-data';
+
+
+
+
 
 
 @Component({
@@ -21,14 +24,17 @@ export class AppComponent {
 
   loggedIn = false;
 
+
+
   constructor(
     private events: Events,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private userData: UserData,
     private storage: Storage,
     private router: Router
+
+
 
   ) {
     this.initializeApp();
@@ -46,6 +52,8 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+
 /*
   checkLoginStatus() {
     return this.userData.isLoggedIn().then(loggedIn => {

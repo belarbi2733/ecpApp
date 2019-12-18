@@ -35,6 +35,12 @@
     </ion-item-group>
   </ion-list>
 
+  <ion-row [hidden]="shownSessions == 0">
+    <ion-col>
+      <ion-button  *ngIf="!isValidate" align="left" color="primary" (click)="goToMap()" >Voir la carte</ion-button>
+    </ion-col>
+  </ion-row>
+
   <ion-list-header [hidden]="shownSessions > 0">
     Désolé, il semble qu'il n'y a aucuns trajets associés à cette tournée
   </ion-list-header>

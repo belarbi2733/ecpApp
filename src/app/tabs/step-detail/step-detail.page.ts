@@ -104,6 +104,7 @@ export class StepDetailPage{
           console.log('depart: ', BddTraj.depart);
           console.log('arrivee: ', BddTraj.arrivee)
           console.log( this.Info);
+
         }
         for( const info of this.Info){
           this.info = info;
@@ -140,6 +141,12 @@ export class StepDetailPage{
     });
   }
 
+  goToMap(){
+    let bddId: any = this.route.snapshot.paramMap.get('bddId');
+    bddId=parseInt(bddId);
+    this.router.navigateByUrl('/tabs/trajet/map/'+bddId);
+  }
+
   /*
 
   updateSteps(){
@@ -150,7 +157,7 @@ export class StepDetailPage{
 */
   ionViewDidEnter() {
   this.defaultHref = `/tabs/trajet`;
-  
+
 }
 
 /*

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Events, MenuController, Platform,  ToastController } from '@ionic/angular';
-
 import { Storage } from '@ionic/storage';
-
 import { UserData } from '../providers/user-data';
 import { TourneeOptions } from '../interfaces/tournee-options';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { PositionService } from '../providers/position';
 
 @Component({
   selector: 'app-tabs',
@@ -16,13 +15,17 @@ import { TourneeOptions } from '../interfaces/tournee-options';
 export class TabsPage {
   loggedIn = false;
   tournee: TourneeOptions=  { idUser: null,idCar: null, depart: '', arrivee: '', date: '', id: null};
+  id: number;
+  locTab:String[]= [];
 
   constructor(
     private events: Events,
     private userData: UserData,
     private storage: Storage,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private geolocation: Geolocation,
+    private posApi:PositionService
   ) {
    }
 
@@ -40,7 +43,33 @@ export class TabsPage {
 
   this.checkLoginStatus();
   this.listenForLoginEvents();
+  if(this.loggedIn){
+    this.watch();
+  }
+
 }
+
+  watch(){
+    const watch = this.geolocation.watchPosition({enableHighAccuracy : true, timeout : 1000}).subscribe(position =>{
+      if(position.coords !== undefined){
+        let locationString = position.coords.longitude + '\t'+ position.coords.latitude;
+        this.locTab.push(locationString);
+        console.log(locationString);
+        this.positionSend(position.coords.latitude, position.coords.longitude);
+
+      }else{
+        console.log(position); //Afficher l'erreur
+        throw "Impossible de récupérer la position.";
+      }
+    });
+  }
+    //Sauve la position de l'utilisateur dans la DB
+    positionSend(lat, long){
+      this.id = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
+      this.posApi.sendPosition(lat, long, this.id).subscribe((response)=>{
+        console.log(response);
+      });
+    }
 
   checkLoginStatus() {
   //  return this.userData.isLoggedIn().then(loggedIn => {

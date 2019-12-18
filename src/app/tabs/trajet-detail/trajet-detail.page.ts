@@ -36,6 +36,7 @@ export class TrajetDetailPage{
   bddId: any;
   id: any;
   idCar= false;
+  idTour: number;
 
   constructor(
   private dataProvider: TrajetData,
@@ -103,7 +104,7 @@ export class TrajetDetailPage{
           this.info = Bdd;
           console.log('depart: ', Bdd.depart);
           console.log('arrivee: ', Bdd.arrivee);
-
+          this.idTour = Bdd.id_tournee;
           this.trajet.idColis = Bdd.id_colis;
           this.getColis(this.trajet);
 
@@ -171,6 +172,11 @@ goBack(){
   console.log("hey"+this.defaultHref)
 
   this.router.navigateByUrl(this.defaultHref);
+}
+
+goToMap(){
+
+  this.router.navigateByUrl('/tabs/trajet/map/'+this.idTour);
 }
 
 

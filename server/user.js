@@ -20,6 +20,13 @@ let Utilisateur = {
     },
     getPosition: function(id, callback){
       return db.query('Select position_lat, position_long, prenom from utilisateur where id = $1', [id], callback);
+    },
+
+    getDataById: function(id, callback){
+      return db.query('Select * from utilisateur where id = $1', [id], callback);
+    },
+    updateUtilisateur: function(utilisateur, callback){
+      return db.query('UPDATE utilisateur SET avr_rating = $1, nbr_ratings= $2 WHERE id = $3', [utilisateur.avr_rating,utilisateur.nbr_ratings, utilisateur.id], callback);
     }
 };
 

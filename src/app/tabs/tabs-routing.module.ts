@@ -67,7 +67,7 @@ const routes: Routes = [
           loadChildren: () => import('../tabs/modal-complaint/modal-complaint.module').then(m => m.ModalComplaintPageModule)
         },
         {
-          path: 'map/:idTour',
+          path: 'map/:idTour/:num/:bddId',
           loadChildren: () => import('../tabs/tab3/tab3.module').then(m => m.Tab3PageModule)
         }
         ]

@@ -108,7 +108,7 @@ export class StepDetailPage{
         }
         for( const info of this.Info){
           this.info = info;
-          console.log( this.info);
+          
         }
 
       });
@@ -144,8 +144,9 @@ export class StepDetailPage{
   goToMap(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
-    this.router.navigateByUrl('/tabs/trajet/map/'+bddId);
+    this.router.navigateByUrl('/tabs/trajet/map/'+bddId+'/2/'+  bddId);
   }
+
 
   /*
 

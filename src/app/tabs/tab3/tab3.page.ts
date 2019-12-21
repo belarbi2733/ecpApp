@@ -4,10 +4,7 @@ import { PositionService } from '../../providers/position';
 import { ActivatedRoute } from '@angular/router';
 import { TrajetOptions } from '../../interfaces/trajet-options';
 import { TrajetData } from '../../providers/trajet-data';
-
-
-
-
+import { Router } from '@angular/router';
 
 declare let L;
 declare let tomtom: any;
@@ -23,6 +20,7 @@ export class Tab3Page {
     private geolocation: Geolocation,
     private posApi:PositionService,
     private route: ActivatedRoute,
+    public router: Router,
     private trajData: TrajetData
 ){}
 
@@ -36,14 +34,29 @@ export class Tab3Page {
   trajet: TrajetOptions=  { idUser: null, idColis: null,idTour: null, depart: '', arrivee: '', date: '', id: null, code: null};
   User: any;
   Posi: any;
+  defaultHref = '';
   newmark: any[]=[];
 
   ngOnInit(){
-  //  this.getDriverId();
-    this.beAware();
-    this.watch();
+    if(this.route.snapshot.paramMap.get('idTour')){
+      let num : any = this.route.snapshot.paramMap.get('num');
+      if(num == 1){
+        this.defaultHref=`/tabs/trajet/BddTraj/`;
+        this.getDriverId();
+        this.watch();
+      }else{
+        if(num == 2 ){
+          this.defaultHref=`/tabs/trajet/BddTour/`;
+          this.beAware();
+          this.watch();
+        }
+      }
+    }
+    else {
+      this.watch();
+    }
   }
-
+//initialise la map
   maping(lat, long){
      const map = tomtom.L.map('myMap', {
       key: 'X4yRaq0tGtRPAIMAmb0X7wpzW6dAGKQE',
@@ -51,6 +64,7 @@ export class Tab3Page {
       center: [lat, long],
       zoom: 15
     });
+
     var title = 'babla';
     var marker = tomtom.L.marker(new tomtom.L.LatLng(lat, long), {title: title});
     marker.bindPopup(title);
@@ -68,6 +82,7 @@ export class Tab3Page {
     this.marker= marker;
   }
 
+//check régulièrement les changements dans la DB
   beAware(){
     const watch = this.geolocation.watchPosition({enableHighAccuracy: true, timeout: 1000}).subscribe(position =>{
       this.getUsersId();
@@ -95,8 +110,8 @@ export class Tab3Page {
         throw "Impossible de récupérer la position.";
       }
     });
-
   }
+
   //Sauve la position de l'utilisateur dans la DB
   positionSend(lat, long){
     this.id = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
@@ -114,6 +129,7 @@ export class Tab3Page {
       this.getPosition(response);
     });
   }
+
 //Cherche les Id de tous les utilisateurs concernés par une tournée
   getUsersId(){
     let idTour: any = this.route.snapshot.paramMap.get('idTour');
@@ -153,6 +169,13 @@ export class Tab3Page {
     marker.bindPopup(title);
     map.addLayer(marker);
     this.newmark.push(marker);
+  }
+  goBack(){
+    let bddId: any = this.route.snapshot.paramMap.get('bddId');
+    bddId=parseInt(bddId);
+    this.defaultHref=this.defaultHref+bddId;
+    console.log("hey"+this.defaultHref)
+    this.router.navigateByUrl(this.defaultHref);
   }
 
 }

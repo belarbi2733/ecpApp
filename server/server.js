@@ -40,6 +40,21 @@ app.get('/code', function(req, res){
   console.log("code here in node! ");
 });
 
+app.post('/validate', function(req, res){
+  console.log("Id "+req.body.id)
+  Trajet.validateStatus(req.body.id, function(err, result){
+    console.log('err:' + err);
+    if(err){
+      res.status(400).json(err);
+      console.log("Erreur");
+    }
+    else{
+      res.send(true);
+    }
+    console.log("Validate status in node!");
+  });
+});
+
 app.get('/position', (req, res)=>{
     let lat = req.query['lat'];
     let long = req.query['long'];
@@ -61,7 +76,6 @@ app.get('/position', (req, res)=>{
 
 app.post('/getDriver', function(req, res){
   let idTour = req.body.idTour;
-  console.log("ii"+idTour)
   User.getDriver(idTour, function(err, result){
     console.log('err:' + err);
     if(err){
@@ -110,6 +124,41 @@ app.post('/addposition',function (req,res) {
 
   });
 });
+
+app.get('/rating' , (req,res)=> {
+  let idUser = req.query['idUser'];
+  console.log("idUser" + idUser)
+  let rating = req.query['rating'];
+  User.getDataById(idUser, function(err, result) {
+    if(err) {
+      res.status(400).json(err);
+    }
+    else
+    {
+      const userData = result.rows[0];
+      let newNote = rating; /*Instance new note from mobile app*/
+      let avrRating = userData.avr_rating;
+      let nbrRatings = userData.nbr_ratings;
+
+      let newRating = ((avrRating*nbrRatings)+newNote)/(nbrRatings+1);
+
+      newRating = newRating.toFixed(2); /* Round the result to 2 decimal */
+      userData.avr_rating = newRating;
+      userData.nbr_ratings = nbrRatings + 1;
+      result.rows[0] = userData ;
+      User.updateUtilisateur(result.rows[0], function(err, result){
+        if(err){
+          res.status(400).json;
+        }
+        else{
+          res.send(true);
+        }
+      });
+    }
+  });
+  console.log("sending new rating in node")
+});
+
 app.post('/getCode', function(req, res){
   Trajet.getCode(req, function(err, result){
     console.log('err: '+err);
@@ -254,6 +303,34 @@ app.post('/colis', function(req, res){
       res.json(result.rows);
     }
     console.log("getting colis in node!");
+  });
+});
+
+app.post('/colisonly', function(req, res){
+  console.log(req.body.idUser)
+  Colis.getColisOnly(req.body.idUser, function(err, result){
+    console.log('err: '+err);
+    if(err){
+      res.status(400).json(err);
+      console.log("Erreur");
+    }else{
+      res.json(result.rows);
+    }
+    console.log("getting colisOnly in node!");
+  });
+});
+
+app.post('/trajetColis', function(req, res){
+  Trajet.getTrajetColis(req.body.idColis, function(err, result){
+    console.log(req.body.idColis);
+    console.log('err: '+err);
+    if(err){
+      res.status(400).json(err);
+      console.log("Erreur");
+    }else{
+      res.json(result.rows);
+    }
+    console.log("getting trajectColis in node!");
   });
 });
 

@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TrajetOptions } from '../../interfaces/trajet-options';
 import { TourneeOptions } from '../../interfaces/tournee-options';
 import { TourneeData } from '../../providers/tournee-data';
+import { TrajetData } from '../../providers/trajet-data';
+
 
 
 @Component({
@@ -27,6 +29,7 @@ export class QRCodePage {
   private api: ServiceData,
   private route: ActivatedRoute,
   public tourData: TourneeData,
+  private dataProvider: TrajetData,
   public router: Router
 
   ) {}
@@ -67,6 +70,9 @@ checkCode(){
   this.api.checkCodebdd(this.trajet).then((checkcodeStatus: boolean)=>{
     if(checkcodeStatus){
       console.log("check code OK")
+      this.dataProvider.validateStatusbdd(this.trajet).then((response)=>{
+        console.log("validation status: "+ response);
+      });
     }
     }).catch(()=>{
       console.log("erreur de vérification");

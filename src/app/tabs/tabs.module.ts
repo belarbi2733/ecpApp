@@ -10,6 +10,7 @@ import {LoginPageModule} from '../tabs/login/login.module';
 import { TrajetPageModule } from '../tabs/trajet/trajet.module';
 import { TrajetDetailPageModule } from '../tabs/trajet-detail/trajet-detail.module';
 import {ModalRatingPage} from '../tabs/modal-rating/modal-rating.page';
+import { ModalRatingPageModule } from '../tabs/modal-rating/modal-rating.module';
 
 
 
@@ -19,7 +20,10 @@ import {ModalRatingPage} from '../tabs/modal-rating/modal-rating.page';
     CommonModule,
     FormsModule,
     TabsPageRoutingModule
+//    ModalRatingPageModule
   ],
   declarations: [TabsPage]
+/*  entryComponents: [
+    ModalRatingPage]*/
 })
 export class TabsPageModule {}

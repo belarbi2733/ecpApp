@@ -7,7 +7,8 @@ let config = {
   password: 'postgremdp',
 //  password: 'carpool',
   port: 5432
-//  ,host:'bdd.easy-carpool.com'
+  //host:'easy-carpool.com',
+//ssl: true
 };
 
 let pool = new pg.Pool(config);

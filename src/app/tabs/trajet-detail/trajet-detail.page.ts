@@ -34,9 +34,11 @@ export class TrajetDetailPage{
   bdd: any=[];
   colis: any=[];
   bddId: any;
-  id: any;
+  id: number;
   idCar= false;
-  idTour: number;
+  idTour: number= null;
+  idUser: number= null;
+  statut= null;
 
   constructor(
   private dataProvider: TrajetData,
@@ -48,19 +50,35 @@ export class TrajetDetailPage{
   public modalCtrl: ModalController
 
   ){
-  }
-
-  ionViewWillEnter() {
     this.getIdCar();
     setTimeout(()=>{
       if(this.idCar===true){
         this.TrajetConduct();
+        setTimeout(()=>{
+          console.log("statuuuuut "+this.statut)
+          if(this.statut > 1){
+            this.isValidate = true;
+          }
+        }, 300);
+
       }else{
         if(this.idCar===false){
+          this.getTrajetColis();
           this.dataLoading();
+          setTimeout(()=>{
+            console.log("statuuuuut "+this.statut)
+            if(this.statut > 1){
+              this.isValidate = true;
+            }
+          },300);
+
         }
       }
     }, 300);
+  }
+
+  ionViewWillEnter() {
+
 
 
     /*this.dataProvider.load().subscribe((data: any) => {
@@ -105,6 +123,8 @@ export class TrajetDetailPage{
           console.log('depart: ', Bdd.depart);
           console.log('arrivee: ', Bdd.arrivee);
           this.idTour = Bdd.id_tournee;
+          this.id= Bdd.id;
+          this.statut = Bdd.statut;
           this.trajet.idColis = Bdd.id_colis;
           this.getColis(this.trajet);
 
@@ -136,7 +156,8 @@ export class TrajetDetailPage{
           this.info = Bdd;
           console.log('depart: ', Bdd.depart);
           console.log('arrivee: ', Bdd.arrivee);
-
+          this.idUser = Bdd.id_user;
+          this.statut = Bdd.statut;
           this.trajet.idColis = Bdd.id_colis;
           this.getColis(this.trajet);
 
@@ -144,6 +165,20 @@ export class TrajetDetailPage{
         }
       });
 
+    });
+  }
+
+  getTrajetColis(){
+    let bddId: any = this.route.snapshot.paramMap.get('bddId');
+    bddId=parseInt(bddId);
+    this.trajet.idColis = bddId;
+    this.dataProvider.getTrajetColisbdd(this.trajet).then((response)=>{
+      console.log(response);
+      this.bdd = response;
+      this.bdd.forEach((Bdd: any)=>{
+        this.info = Bdd;
+        this.getColis(this.trajet);
+      })
     });
   }
 
@@ -169,35 +204,31 @@ export class TrajetDetailPage{
 }
 
 goBack(){
+
   console.log("hey"+this.defaultHref)
 
   this.router.navigateByUrl(this.defaultHref);
 }
 
 goToMap(){
-
-  this.router.navigateByUrl('/tabs/trajet/map/'+this.idTour);
+  let bddId: any = this.route.snapshot.paramMap.get('bddId');
+  bddId=parseInt(bddId);
+  this.router.navigateByUrl('/tabs/trajet/map/'+this.idTour+'/1/'+bddId);
 }
-
 
 sessionClick(item: string) {
   console.log('Clicked', item);
 }
 
 validate() {
-    if (this.userProvider.hasValidate(this.session.id)) {
-      //add popup déjà validé
-      this.isValidate = true;
-    } else {
-      this.userProvider.addValidation(this.session.id);
-      this.isValidate = true;
-    }
-  }
+  this.dataProvider.validateStatusbdd(this.info).then((response)=>{
+    console.log("validation status: "+ response);
+  });
+}
 
   qrcode(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     this.router.navigateByUrl('/tabs/trajet/qrcode/'+bddId);
-
   }
 
   getIdCar(){
@@ -221,7 +252,11 @@ validate() {
 
 async openModalRating() {
     const modal = await this.modalCtrl.create({
-      component: ModalRatingPage
+      component: ModalRatingPage,
+      componentProps: {
+        'idTour': this.idTour,
+        'idTraveller': this.idUser
+      }
     });
     return await modal.present();
   }

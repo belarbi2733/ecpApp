@@ -15,12 +15,14 @@ import { ColisData } from '../../providers/colis-data';
   templateUrl: 'trajet.page.html',
   styleUrls: ['trajet.page.scss']
 })
+
 export class TrajetPage {
   @ViewChild('trajetList', { static: true }) trajetList: IonList;
 
   shownSessions: any = 0;
   groups: any = [];
   bddTraj: any=[];
+  Colis: any=[];
   bddTour: any=[];
   ios: boolean;
   dayIndex = 0;
@@ -31,6 +33,10 @@ export class TrajetPage {
   idCar= false;
   tourneeList: any=[];
   heure_arrivee= null;
+
+  /**
+  *Get user id from localStorage
+  */
   constructor(
     private events: Events,
     public router: Router,
@@ -57,9 +63,32 @@ export class TrajetPage {
 // selectionne l'id tournee ->getIdTournee -getIdTourbdd(tournee)
 //selectionne tout trajet en rapport avec ses tournées pour infos ->getTrajetAll - getTrajetAllbdd(trajet)
 
+
+
+  /**
+  *Call functions that are usefull
+  *[toast]{@link TrajetPage.html#toast},
+  *[getIdCar]{@link TrajetPage.html#getIdCar},
+  *[updateTrajet]{@link TrajetPage.html#updateTrajet},
+  *[listenForLoginEvents]{@link TrajetPage.html#listenForLoginEvents}
+  */
+  ngOnInit() {
+    this.toast();
+    setTimeout(() => {
+      this.getIdCar();
+      setTimeout(()=>{
+        this.updateTrajet();
+      }, 300);
+    }, 300);
+    this.listenForLoginEvents();
+  }
+
+  /**
+  *Toast to alert user to give his advice
+  */
   async toast() {
     const toast = await this.toastController.create({
-      message: 'Validez vos derniers trajets sous 24h',
+      message: 'Donnez votre avis sur vos trajets sous 24h',
       duration: 3000,
       buttons: [{
           text: 'ok',
@@ -72,22 +101,9 @@ export class TrajetPage {
     toast.present();
   }
 
-  ngOnInit() {
-  //  this.updateTrajet();
-
-
-    this.toast();
-    setTimeout(() => {
-      this.getIdCar();
-      setTimeout(()=>{
-        this.updateTrajet();
-      }, 300);
-    }, 300);
-
-    this.listenForLoginEvents();
-  }
-
-
+/**
+*Listen to events, if user is log call [getIdCar]{@link TrajetPage.html#getIdCar} and [updateTrajet]{@link TrajetPage.html#updateTrajet}
+*/
   listenForLoginEvents(){
     this.events.subscribe('user:login', ()=>{
       setTimeout(() => {
@@ -99,13 +115,44 @@ export class TrajetPage {
     });
   }
 
+/**
+*Get idCar to know if user is a driver or a traveller
+*
+*Call [getIdCarbdd]{@link ../injectables/TourneeData.html#getIdCarbdd}
+*/
+  getIdCar(){
+    this.tournee.idCar =null;
+    this.idCar=false;
+
+    this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id;
+    console.log(this.trajet.idUser);
+
+    this.tourData.getIdCarbdd(this.trajet).then((response)=>{
+      if(response != null){
+        this.idCar=true;
+        let respo= JSON.stringify(response);
+        let resp = parseInt(respo);
+        this.tournee.idCar =resp;
+      }
+    }).catch(() => {
+      console.log('Error in getIdCar');
+    });
+  }
+
+  /**
+  *Update traject list
+  *
+  *If driver, get [TourneeBdd]{@link TrajetPage.html#TourneeBdd}
+  *
+  *If traveller, get [TrajetBdd]{@link TrajetPage.html#TrajetBdd}
+  */
   updateTrajet(){
     this.bddTraj = [];
     this.bddTour = [];
-    console.log("ddd"+ this.tournee.idCar)
     if (this.idCar === false){
       setTimeout(()=>{
         this.TrajetBdd();
+        this.getColisOnly();
       }, 200);
     }else {
       if(this.idCar === true){
@@ -115,43 +162,44 @@ export class TrajetPage {
     }
   }
 
+  /**
+  *Get trajet from database [getTrajetbdd]{@link ../injectables/TrajetData.html#getTrajetbdd} to display them in a list
+  */
   TrajetBdd(){
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
-    console.log(this.trajet.idUser);
 
     this.trajData.getTrajetbdd(this.trajet).then((response)=>{
       console.log('get: ', response);
       this.bddTraj = response;
 
       this.bddTraj.forEach((BddTraj: any)=>{
-        console.log('depart: ', BddTraj.depart);
-        console.log('arrivee: ', BddTraj.arrivee);
         this.shownSessions++;
-
         this.trajet.idTour = BddTraj.id_tournee;
-      //  this.getTourneeAll(this.trajet);
-
+        console.log(BddTraj.date);
+        BddTraj.date = this.Date(BddTraj.date)
+        console.log("DATE "+BddTraj.date)
       });
     });
   }
 
 
-
+  /**
+  *
+  */
   TourneeBdd(){
     this.tournee.idUser = JSON.parse(localStorage.getItem('idUser')).id;
-    console.log(this.tournee.idUser);
 
     this.tourData.getTourneebdd(this.tournee).then((response)=>{
-      console.log("here")
       console.log('get: ', response);
       this.bddTour= response;
       this.bddTour.forEach((BddTour: any)=>{
         this.shownSessions++;
+        console.log(BddTour.date);
+        BddTour.date = this.Date(BddTour.date)
+        console.log("DATE "+BddTour.date)
 
-        console.log('depart: ', BddTour.depart);
-        console.log('arrivee: ', BddTour.arrivee);
-        this.heure_arrivee= BddTour.heure_depart + BddTour.duree;
-        console.log(this.heure_arrivee);
+      //  this.heure_arrivee= BddTour.heure_depart + BddTour.duree;
+      //  console.log(this.heure_arrivee);
         BddTour.hide;
       });
     });
@@ -168,47 +216,38 @@ export class TrajetPage {
         this.shownSessions++;
         console.log('depart: ', BddTraj.depart);
         console.log('arrivee: ', BddTraj.arrivee);
+        console.log(BddTraj.date);
+        BddTraj.date = this.Date(BddTraj.date)
+        console.log("DATE "+BddTraj.date)
 
         BddTraj.hide;
       });
     });
   }
 
-  getIdCar(){
-    this.tournee.idCar =null;
-    this.idCar=false;
-
-    this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id;
+  getColisOnly(){
+    this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
     console.log(this.trajet.idUser);
+    this.colisData.getColisOnlybdd(this.trajet).then((response)=>{
+      console.log(response)
+      this.Colis= response;
+      this.Colis.forEach((colis: any)=> {
+        console.log(colis.date);
+        colis.date = this.Date(colis.date)
+        console.log("DATE "+colis.date)
 
-    this.tourData.getIdCarbdd(this.trajet).then((response)=>{
-      console.log('get Car: ', response);
-      if(response != null){
-        this.idCar=true;
-        let respo= JSON.stringify(response);
-        let resp = parseInt(respo);
-        this.tournee.idCar =resp;
-        console.log('get Car: ', this.idCar);
-      }
-      else{console.log("passager")}
-    }).catch(() => {
-      console.log('Error in getIdCar');
+        colis.hide;
+      });
     });
   }
 
+  Date(sqlDate){
+    var sqlDateArr1  = sqlDate.split("-");
+    var year =  sqlDateArr1 [0];
+    var month = (sqlDateArr1 [1]).toString();
+    var sqlDateArr2 = sqlDateArr1[2].split("T");
+    var day = sqlDateArr2[0];
+    return day+'/'+month+'/'+year;
 
-
-
-  /*
-    updateTrajet() {
-      // Close any open sliding items when the Trajet updates
-      if (this.trajetList) {
-        this.trajetList.closeSlidingItems();
-      }
-
-      this.trajData.getTimeline(this.dayIndex, this.queryText, this.segment).subscribe((data: any) => {
-        this.shownSessions = data.shownSessions;
-        this.groups = data.groups;
-      });
-    }*/
+  }
 }

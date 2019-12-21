@@ -8,10 +8,12 @@ import {TrajetOptions} from '../interfaces/trajet-options';
 })
 
 export class ServiceData{
-  codeServiceUrl= "http://localhost:8080/code";
-  userServiceUrl= "http://localhost:8080/login";
-  getCodeServiceUrl = "http://localhost:8080/getCode";
-  checkCodeServiceUrl = "http://localhost:8080/checkCode";
+  //  Url= "http://bdd.easy-carpool.com/";
+  Url = "http://localhost:8080/";
+  codeServiceUrl= this.Url + "code";
+  userServiceUrl= this.Url + "login";
+  getCodeServiceUrl = this.Url + "getCode";
+  checkCodeServiceUrl = this.Url + "checkCode";
 
   constructor( private http : HttpClient){  }
 

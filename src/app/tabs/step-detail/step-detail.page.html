@@ -25,10 +25,13 @@
       <ion-item-sliding>
         <ion-item color = "light" routerLink="/tabs/trajet/BddTour/bddId/step/{{info.id}}">
           <ion-label>
-            <h3>{{info.depart}} &mdash; {{info.arrivee}} </h3>
-            <p>
-          <!--    {{info.timeStart}} &mdash; {{info.timeEnd}}-->
-            </p>
+            <h2>{{info.depart}} &mdash; {{info.arrivee}} </h2>
+
+            <h3>
+              {{info.departure_time}}
+            </h3>
+            <p *ngIf= "info.id_colis">colis</p>
+            <p *ngIf = "info.id_user">{{info.book_places}} passager</p>
           </ion-label>
         </ion-item>
       </ion-item-sliding>

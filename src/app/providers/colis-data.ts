@@ -14,7 +14,10 @@ import {UserOptions} from '../interfaces/user-options';
 
 export class ColisData{
   data: any;
-  colisServiceUrl = "http://localhost:8080/colis";
+  //  Url= "http://bdd.easy-carpool.com/";
+  Url = "http://localhost:8080/";
+  colisServiceUrl = this.Url +"colis";
+  colisOnlyServiceUrl = this.Url +"colisonly";
 
 
   constructor(public http: HttpClient){}
@@ -22,6 +25,18 @@ export class ColisData{
   getColisbdd(data: TrajetOptions){
     return new Promise((resolve, reject)=>{
       this.http.post(this.colisServiceUrl, data).subscribe(res=>{
+        resolve(res);
+      },
+    err=>{
+      console.log('Error occured: '+err);
+      reject();
+    });
+  });
+  }
+
+  getColisOnlybdd(data: TrajetOptions){
+    return new Promise((resolve, reject)=>{
+      this.http.post(this.colisOnlyServiceUrl, data).subscribe(res=>{
         resolve(res);
       },
     err=>{

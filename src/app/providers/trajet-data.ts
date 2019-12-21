@@ -14,18 +14,35 @@ import { UserData } from './user-data';
 
 export class TrajetData {
   data: any;
-  trajetServiceUrl = "http://localhost:8080/trajet";
-  trajetIdColisServiceUrl = "http://localhost:8080/getIdColis";
-  tourneeIdServiceUrl = "http://localhost:8080/getTourneeId";
-  trajAllServiceUrl = "http://localhost:8080/trajetAll";
-  getCodeServiceUrl = "http://localhost:8080/getCode";
-  trajConductServiceUrl = "http://localhost:8080/trajetConduct";
 
+  //  Url= "http://bdd.easy-carpool.com/";
+  Url = "http://localhost:8080/";
+  trajetServiceUrl = this.Url +"trajet";
+  trajetIdColisServiceUrl = this.Url +"getIdColis";
+  tourneeIdServiceUrl = this.Url +"getTourneeId";
+  trajAllServiceUrl = this.Url +"trajetAll";
+  getCodeServiceUrl = this.Url +"getCode";
+  trajConductServiceUrl = this.Url +"trajetConduct";
+  validateServiceUrl = this.Url +"validate";
+  trajetColisServiceURL = this.Url +"trajetColis";
 
   constructor( public http: HttpClient) {}
 
   getCodebdd(data: TrajetOptions){
     return this.http.post(this.getCodeServiceUrl, data);
+  }
+
+  validateStatusbdd(data: TrajetOptions){
+    console.log(data)
+    return new Promise((resolve, reject)=> {
+      this.http.post(this.validateServiceUrl, data).subscribe(res=>{
+        resolve(res);
+      },
+    err => {
+      console.log('Error occured: ' + err);
+      reject();
+    });
+  });
   }
 
   getTrajetbdd(data: TrajetOptions){
@@ -87,6 +104,20 @@ export class TrajetData {
         },
         err => {
           console.log('Error occured in getIdTournee:' + err);
+          reject();
+        }
+      );
+    });
+  }
+
+  getTrajetColisbdd(data: TrajetOptions){
+    return new Promise((resolve, reject) => {
+      this.http.post(this.trajetColisServiceURL, data).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          console.log('Error occured in getTrajetColis:' + err);
           reject();
         }
       );

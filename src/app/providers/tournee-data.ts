@@ -14,11 +14,13 @@ import {UserOptions} from '../interfaces/user-options';
 
 export class TourneeData{
   data: any;
-  tourneeServiceUrl = "http://localhost:8080/tournee";
-  trajetOnlyServiceUrl = "http://localhost:8080/trajetOnly";
-  IdCarServiceUrl = "http://localhost:8080/getIdCar";
-  tourneeAllServiceUrl = "http://localhost:8080/tourneeAll";
-  tourneeIDServiceUrl = "http://localhost:8080/getIdTournee";
+  //  Url= "http://bdd.easy-carpool.com/";
+  Url = "http://localhost:8080/";
+  tourneeServiceUrl = this.Url+ "tournee";
+  trajetOnlyServiceUrl = this.Url+ "trajetOnly";
+  IdCarServiceUrl = this.Url+ "getIdCar";
+  tourneeAllServiceUrl = this.Url+ "tourneeAll";
+  tourneeIDServiceUrl =this.Url+ "getIdTournee";
 
   constructor(public http: HttpClient){}
 

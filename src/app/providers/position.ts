@@ -7,15 +7,18 @@ import {TrajetOptions} from '../interfaces/trajet-options';
   providedIn: 'root'
 })
 export class PositionService {
-positionServiceUrl= "http://localhost:8080/position";
-AddpositionServiceUrl= "http://localhost:8080/addposition";
-getDriverServiceUrl= "http://localhost:8080/getDriver";
-getPositionServiceUrl= "http://localhost:8080/getPosition";
+  //  Url= "http://bdd.easy-carpool.com/";
+Url = "http://localhost:8080/";
+positionServiceUrl= this.Url +  "position";
+AddpositionServiceUrl= this.Url +  "addposition";
+getDriverServiceUrl= this.Url +  "getDriver";
+getPositionServiceUrl= this.Url +  "getPosition";
 
 constructor(private http : HttpClient) { }
 
   sendPosition(lat, long, idUser){
     let parameters= new HttpParams().set('lat', lat).append('long', long).append('idUser', idUser);
+    console.log("posi"+ parameters)
     return this.http.get(this.positionServiceUrl, {params:parameters, responseType : 'text'});
   }
 

@@ -9,6 +9,10 @@ let Trajet = {
   {
     return db.query('select * from trajet where id = $1',[trajet.body.id] ,callback);
   },
+  getTrajetColis: function(idColis, callback)
+  {
+    return db.query('select * from trajet where id_colis = $1',[idColis] ,callback);
+  },
   getTrajetOnly: function(trajetonly, callback)
   {
     return db.query('select * from trajet where (id_user = $1 AND id_tournee IS NULL)',[trajetonly.body.idUser],callback);
@@ -30,6 +34,9 @@ let Trajet = {
   },
   getCode: function(trajet, callback){
     return db.query('select code from trajet where id = $1', [trajet.body.id], callback);
+  },
+  validateStatus: function(id, callback){
+    return db.query('update trajet set statut=2 where id = $1', [id], callback);
   }
 };
 module.exports = Trajet;

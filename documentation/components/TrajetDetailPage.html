@@ -64,6 +64,13 @@
     <code>src/app/tabs/trajet-detail/trajet-detail.page.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Informations about a ride</p>
+
+    </p>
 
 
 
@@ -181,6 +188,9 @@
                                 <a href="#shownSteps">shownSteps</a>
                             </li>
                             <li>
+                                <a href="#statut">statut</a>
+                            </li>
+                            <li>
                                 <a href="#step">step</a>
                             </li>
                             <li>
@@ -206,25 +216,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#dataLoading">dataLoading</a>
-                            </li>
-                            <li>
                                 <a href="#getColis">getColis</a>
                             </li>
                             <li>
                                 <a href="#getIdCar">getIdCar</a>
                             </li>
                             <li>
+                                <a href="#getTrajetColis">getTrajetColis</a>
+                            </li>
+                            <li>
                                 <a href="#goBack">goBack</a>
                             </li>
                             <li>
                                 <a href="#goToMap">goToMap</a>
-                            </li>
-                            <li>
-                                <a href="#ionViewDidEnter">ionViewDidEnter</a>
-                            </li>
-                            <li>
-                                <a href="#ionViewWillEnter">ionViewWillEnter</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -238,13 +242,10 @@
                                 <a href="#qrcode">qrcode</a>
                             </li>
                             <li>
-                                <a href="#sessionClick">sessionClick</a>
+                                <a href="#Trajetbdd">Trajetbdd</a>
                             </li>
                             <li>
                                 <a href="#TrajetConduct">TrajetConduct</a>
-                            </li>
-                            <li>
-                                <a href="#validate">validate</a>
                             </li>
                         </ul>
                     </td>
@@ -264,17 +265,21 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dataProvider: <a href="../injectables/TrajetData.html">TrajetData</a>, tourData: <a href="../injectables/TourneeData.html">TourneeData</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, userProvider: <a href="../injectables/UserData.html">UserData</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, colisData: <a href="../injectables/ColisData.html">ColisData</a>, modalCtrl: ModalController)</code>
+<code>constructor(trajetData: <a href="../injectables/TrajetData.html">TrajetData</a>, tourData: <a href="../injectables/TourneeData.html">TourneeData</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, userProvider: <a href="../injectables/UserData.html">UserData</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, colisData: <a href="../injectables/ColisData.html">ColisData</a>, modalCtrl: ModalController)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:43</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p><a href="TrajetDetailPage.html#getIdCar">getIdCar</a> before get informations about ride</p>
+<p>If driver, get ride informations <a href="TrajetDetailPage.html#TrajetConduct">TrajetConduct</a> and check validation status of the ride</p>
+<p>If traveller, get ride informations <a href="TrajetDetailPage.html#getTrajetColis">getTrajetColis</a> and <a href="TrajetDetailPage.html#Trajetbdd">Trajetbdd</a>and check validation status of the ride</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -287,7 +292,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>dataProvider</td>
+                                                        <td>trajetData</td>
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/TrajetData.html" target="_self" >TrajetData</a></code>
@@ -392,45 +397,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="dataLoading"></a>
-                    <span class="name">
-                        <b>
-                            dataLoading
-                        </b>
-                        <a href="#dataLoading"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>dataLoading()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:94</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getColis"></a>
                     <span class="name">
                         <b>
@@ -449,14 +415,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="153"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:153</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:175</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Get informations [getColisbdd]{@link }about packages</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -519,14 +487,57 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="208"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:208</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:220</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Get idCar from database <a href="../injectables/TourneeData.html#getIdCarbdd">getIdCarbdd</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTrajetColis"></a>
+                    <span class="name">
+                        <b>
+                            getTrajetColis
+                        </b>
+                        <a href="#getTrajetColis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTrajetColis()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get packages <a href="}">related to the ride in case of a traveller to display them on the app then [getColis]{@link </a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -558,14 +569,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="174"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:174</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:195</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>function that define route navigation to ga back to the previous view</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -597,92 +610,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:203</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ionViewDidEnter"></a>
-                    <span class="name">
-                        <b>
-                            ionViewDidEnter
-                        </b>
-                        <a href="#ionViewDidEnter"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ionViewDidEnter()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="171"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:171</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ionViewWillEnter"></a>
-                    <span class="name">
-                        <b>
-                            ionViewWillEnter
-                        </b>
-                        <a href="#ionViewWillEnter"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ionViewWillEnter()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:65</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
+                    <div class="io-description"><p>Go to map view with informations in case of a traveller</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -716,14 +653,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="238"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:238</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:256</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Open the modal to complain about the other user <a href="ModalComplaintPage.html">ModalComplaintPage</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>{}</code>
@@ -757,14 +696,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="227"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:227</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:242</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Open the modal to rate the other user <a href="ModalRatingPage.html">ModalRatingPage</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>{}</code>
@@ -796,14 +737,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:212</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Go to the QRCode view to validate the journey</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -817,67 +760,38 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="sessionClick"></a>
+                    <a name="Trajetbdd"></a>
                     <span class="name">
                         <b>
-                            sessionClick
+                            Trajetbdd
                         </b>
-                        <a href="#sessionClick"><span class="icon ion-ios-link"></span></a>
+                        <a href="#Trajetbdd"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>sessionClick(item: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>Trajetbdd()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="188"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:188</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:96</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Get informations <a href="}about">the ride in case of a traveller to display them on the app then [getColis]{@link </a></p>
+</div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>item</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -905,53 +819,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:121</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:125</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="validate"></a>
-                    <span class="name">
-                        <b>
-                            validate
-                        </b>
-                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>validate()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="192"
-                            class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:192</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
+                    <div class="io-description"><p>Get informations <a href="}about">the ride in case of a driver to display them on the app then [getColis]{@link </a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -992,7 +869,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -1019,7 +896,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -1051,7 +928,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -1079,7 +956,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -1111,7 +988,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -1143,7 +1020,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -1164,13 +1041,13 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -1196,7 +1073,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -1228,7 +1105,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -1260,7 +1137,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -1292,7 +1169,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -1318,7 +1195,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -1346,7 +1223,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -1378,7 +1255,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -1406,7 +1283,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -1438,7 +1315,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -1470,7 +1347,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -1502,7 +1379,39 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="statut"></a>
+                        <span class="name">
+                            <b>
+                            statut</b>
+                            <a href="#statut"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -1534,7 +1443,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -1562,7 +1471,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -1594,7 +1503,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -1630,7 +1539,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tabs/trajet-detail/trajet-detail.page.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -1656,7 +1565,9 @@ import { TrajetOptions } from &#x27;../../interfaces/trajet-options&#x27;;
 import { ColisData } from &#x27;../../providers/colis-data&#x27;;
 import { TourneeData } from &#x27;../../providers/tournee-data&#x27;;
 
-
+/**
+*Informations about a ride
+*/
 @Component({
   selector: &#x27;app-trajet-detail&#x27;,
   styleUrls: [&#x27;./trajet-detail.page.scss&#x27;],
@@ -1679,71 +1590,71 @@ export class TrajetDetailPage{
   bdd: any&#x3D;[];
   colis: any&#x3D;[];
   bddId: any;
-  id: any;
+  id: number;
   idCar&#x3D; false;
   idTour: number&#x3D; null;
   idUser: number&#x3D; null;
+  statut&#x3D; null;
 
-
+/**
+*[getIdCar]{@link TrajetDetailPage.html#getIdCar} before get informations about ride
+*
+*If driver, get ride informations [TrajetConduct]{@link TrajetDetailPage.html#TrajetConduct} and check validation status of the ride
+*
+*If traveller, get ride informations [getTrajetColis]{@link TrajetDetailPage.html#getTrajetColis} and [Trajetbdd]{@link TrajetDetailPage.html#Trajetbdd}and check validation status of the ride
+*/
   constructor(
-  private dataProvider: TrajetData,
+  private trajetData: TrajetData,
   public tourData: TourneeData,
   public router: Router,
   private userProvider: UserData,
   private route: ActivatedRoute,
   public colisData: ColisData,
   public modalCtrl: ModalController
-
   ){
     this.getIdCar();
     setTimeout(()&#x3D;&gt;{
       if(this.idCar&#x3D;&#x3D;&#x3D;true){
         this.TrajetConduct();
+        setTimeout(()&#x3D;&gt;{
+          console.log(&quot;statuuuuut &quot;+this.statut)
+          if(this.statut &gt; 1){
+            this.isValidate &#x3D; true;
+          }
+        }, 300);
+
       }else{
         if(this.idCar&#x3D;&#x3D;&#x3D;false){
-          this.dataLoading();
+          this.getTrajetColis();
+          this.Trajetbdd();
+          setTimeout(()&#x3D;&gt;{
+            console.log(&quot;statuuuuut &quot;+this.statut)
+            if(this.statut &gt; 1){
+              this.isValidate &#x3D; true;
+            }
+          },300);
+
         }
       }
     }, 300);
   }
 
-  ionViewWillEnter() {
+/**
+*@ignore
+*/
+  ionViewWillEnter() {}
 
-
-
-    /*this.dataProvider.load().subscribe((data: any) &#x3D;&gt; {
-      if (data &amp;&amp; data.trajet &amp;&amp; data.trajet[0] &amp;&amp; data.trajet[0].groups) {
-        const sessionId &#x3D; this.route.snapshot.paramMap.get(&#x27;sessionId&#x27;);
-        for (const group of data.trajet[0].groups) {
-          if (group &amp;&amp; group.sessions) {
-            for (const session of group.sessions) {
-              if (session &amp;&amp; session.id &#x3D;&#x3D;&#x3D; sessionId) {
-                this.session &#x3D; session;
-                this.isValidate &#x3D; this.userProvider.hasValidate(
-                  this.session.id
-                );
-              }
-              if(session &amp;&amp; session.steps){
-                for (const step of session.steps){
-                  this.step &#x3D; step;
-                  this.updateSteps();
-                }
-              }
-            }
-          }
-        }
-      }
-    });*/
-  }
-
-  dataLoading(){
+/**
+*Get informations [getTrajetbdd]{@link }about the ride in case of a traveller to display them on the app then [getColis]{@link }
+*/
+  Trajetbdd(){
     console.log(&quot;PASSAGERRRRRRR&quot;)
     let bddId: any &#x3D; this.route.snapshot.paramMap.get(&#x27;bddId&#x27;);
     bddId&#x3D;parseInt(bddId);
     this.defaultHref&#x3D;&#x60;/tabs/trajet&#x60;;
     this.trajet.idUser &#x3D; JSON.parse(localStorage.getItem(&#x27;idUser&#x27;)).id; // Loading idUser in localStorage
 
-    this.dataProvider.getTrajetbdd(this.trajet).then((response)&#x3D;&gt;{
+    this.trajetData.getTrajetbdd(this.trajet).then((response)&#x3D;&gt;{
       console.log(&#x27;get: &#x27;, response);
       this.bdd &#x3D; response;
       this.bdd.forEach((Bdd: any)&#x3D;&gt;{
@@ -1753,16 +1664,18 @@ export class TrajetDetailPage{
           console.log(&#x27;depart: &#x27;, Bdd.depart);
           console.log(&#x27;arrivee: &#x27;, Bdd.arrivee);
           this.idTour &#x3D; Bdd.id_tournee;
+          this.id&#x3D; Bdd.id;
+          this.statut &#x3D; Bdd.statut;
           this.trajet.idColis &#x3D; Bdd.id_colis;
           this.getColis(this.trajet);
-
-          //this.isValidate &#x3D; this.userProvider.hasValidate(this.info.id);
         }
       });
-
     });
   }
 
+/**
+*Get informations [getTrajetConductbdd]{@link }about the ride in case of a driver to display them on the app then [getColis]{@link }
+*/
   TrajetConduct(){
     console.log(&quot;CONDUCTEUUUUUUUUUR&quot;)
 
@@ -1770,7 +1683,7 @@ export class TrajetDetailPage{
     bddId&#x3D;parseInt(bddId);
     this.trajet.id &#x3D; bddId;
 
-    this.dataProvider.getTrajetConductbdd(this.trajet).then((response)&#x3D;&gt;{
+    this.trajetData.getTrajetConductbdd(this.trajet).then((response)&#x3D;&gt;{
       console.log(&#x27;get: &#x27;, response)
 
       this.bdd &#x3D; response;
@@ -1785,16 +1698,34 @@ export class TrajetDetailPage{
           console.log(&#x27;depart: &#x27;, Bdd.depart);
           console.log(&#x27;arrivee: &#x27;, Bdd.arrivee);
           this.idUser &#x3D; Bdd.id_user;
+          this.statut &#x3D; Bdd.statut;
           this.trajet.idColis &#x3D; Bdd.id_colis;
           this.getColis(this.trajet);
-
-        //  this.isValidate &#x3D; this.userProvider.hasValidate(this.info.id);
         }
       });
-
     });
   }
 
+/**
+*Get packages [getTrajetColisbdd]{@link } related to the ride in case of a traveller to display them on the app then [getColis]{@link }
+*/
+  getTrajetColis(){
+    let bddId: any &#x3D; this.route.snapshot.paramMap.get(&#x27;bddId&#x27;);
+    bddId&#x3D;parseInt(bddId);
+    this.trajet.idColis &#x3D; bddId;
+    this.trajetData.getTrajetColisbdd(this.trajet).then((response)&#x3D;&gt;{
+      console.log(response);
+      this.bdd &#x3D; response;
+      this.bdd.forEach((Bdd: any)&#x3D;&gt;{
+        this.info &#x3D; Bdd;
+        this.getColis(this.trajet);
+      })
+    });
+  }
+
+/**
+*Get informations [getColisbdd]{@link }about packages
+*/
   getColis(colisId : any ){
     console.log(&quot;id colis: &quot;+colisId.idColis)
     this.colisData.getColisbdd(colisId).then((response)&#x3D;&gt;{
@@ -1806,50 +1737,40 @@ export class TrajetDetailPage{
       });
     });
   }
-/*
-  updateSteps(){
-    this.dataProvider.getSteps(this.dayIndex, this.queryText, this.segment).subscribe((data: any) &#x3D;&gt;{
-      this.shownSteps &#x3D; data.shownSteps;
-    })
-  }
+
+/**
+*@ignore
 */
-  ionViewDidEnter() {
-}
+  ionViewDidEnter() {}
 
+/**
+*function that define route navigation to ga back to the previous view
+*/
 goBack(){
-
-  console.log(&quot;hey&quot;+this.defaultHref)
-
+  console.log(&quot;defaultHref&quot;+this.defaultHref)
   this.router.navigateByUrl(this.defaultHref);
 }
 
+/**
+*Go to map view with informations in case of a traveller
+*/
 goToMap(){
   let bddId: any &#x3D; this.route.snapshot.paramMap.get(&#x27;bddId&#x27;);
   bddId&#x3D;parseInt(bddId);
   this.router.navigateByUrl(&#x27;/tabs/trajet/map/&#x27;+this.idTour+&#x27;/1/&#x27;+bddId);
 }
 
-
-sessionClick(item: string) {
-  console.log(&#x27;Clicked&#x27;, item);
-}
-
-validate() {
-    if (this.userProvider.hasValidate(this.session.id)) {
-      //add popup déjà validé
-      this.isValidate &#x3D; true;
-    } else {
-      this.userProvider.addValidation(this.session.id);
-      this.isValidate &#x3D; true;
-    }
-  }
-
+/**
+*Go to the QRCode view to validate the journey
+*/
   qrcode(){
     let bddId: any &#x3D; this.route.snapshot.paramMap.get(&#x27;bddId&#x27;);
     this.router.navigateByUrl(&#x27;/tabs/trajet/qrcode/&#x27;+bddId);
-
   }
 
+  /**
+  *Get idCar from database [getIdCarbdd]{@link ../injectables/TourneeData.html#getIdCarbdd}
+  */
   getIdCar(){
     this.idCar&#x3D;false;
 
@@ -1869,6 +1790,9 @@ validate() {
     });
   }
 
+/**
+*Open the modal to rate the other user [ModalRatingPage]{@link ModalRatingPage.html}
+*/
 async openModalRating() {
     const modal &#x3D; await this.modalCtrl.create({
       component: ModalRatingPage,
@@ -1880,6 +1804,9 @@ async openModalRating() {
     return await modal.present();
   }
 
+  /**
+  *Open the modal to complain about the other user [ModalComplaintPage]{@link ModalComplaintPage.html}
+  */
 async openModalComplaint() {
       const modal &#x3D; await this.modalCtrl.create({
         component: ModalComplaintPage
@@ -1887,6 +1814,17 @@ async openModalComplaint() {
       return await modal.present();
     }
 }
+
+/**
+*@ignore
+*/
+/*
+validate() {
+  this.trajetData.validateStatusbdd(this.info).then((response)&#x3D;&gt;{
+    console.log(&quot;validation status: &quot;+ response);
+  });
+}
+*/
 </code></pre>
     </div>
 
@@ -1898,7 +1836,7 @@ async openModalComplaint() {
     &lt;/ion-buttons&gt;
 
     &lt;ion-buttons slot&#x3D;&quot;end&quot;&gt;
-      &lt;ion-button *ngIf&#x3D;&quot;!isValidate&quot;  (click)&#x3D;&quot;validate()&quot; &gt;
+      &lt;ion-button *ngIf&#x3D;&quot;!isValidate&quot;  (click)&#x3D;&quot;qrcode()&quot; &gt;
         &lt;ion-icon  slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;checkmark-circle-outline&quot;&gt;&lt;/ion-icon&gt;
       &lt;/ion-button&gt;
       &lt;ion-button *ngIf&#x3D;&quot;isValidate&quot; disabled &gt;
@@ -1914,12 +1852,13 @@ async openModalComplaint() {
 
 &lt;ion-content &gt;
   &lt;div  *ngIf&#x3D;&quot;info&quot; class&#x3D;&quot;ion-padding&quot;&gt;
-    &lt;h1&gt;{{info.depart}} &amp;ndash; {{info.arrivee}}&lt;/h1&gt;
-    &lt;p *ngIf&#x3D;&quot;info.prix&quot;&gt;{{info.prix}}&lt;/p&gt;
+    &lt;h1&gt;{{info.depart_address}} &amp;ndash; {{info.arrivee_address}}&lt;/h1&gt;
     &lt;p *ngIf&#x3D;&quot;info.book_places&quot;&gt;nombre de passagers: {{info.book_places}}&lt;/p&gt;
+    &lt;p *ngIf&#x3D;&quot;info.prix&quot;&gt;{{info.prix}} €&lt;/p&gt;
+
 
     &lt;ion-list *ngFor&#x3D;&quot;let Colis of colis&quot; [hidden]&#x3D;&quot;Colis.hide&quot;&gt;
-      &lt;h3&gt;Colis:&lt;/h3&gt;
+      &lt;h5&gt;Colis:&lt;/h5&gt;
       &lt;ion-item&gt;
         &lt;ion-label&gt;
           &lt;h4&gt;{{Colis.nom}}&lt;/h4&gt;
@@ -1936,7 +1875,7 @@ async openModalComplaint() {
 
     &lt;ion-row&gt;
       &lt;ion-col&gt;
-        &lt;ion-button  *ngIf&#x3D;&quot;!isValidate&quot; color&#x3D;&quot;success&quot; (click)&#x3D;&quot;validate()&quot; (click)&#x3D;&quot;qrcode()&quot; expand&#x3D;&quot;block&quot;&gt;Valider&lt;/ion-button&gt;
+        &lt;ion-button  *ngIf&#x3D;&quot;!isValidate&quot; color&#x3D;&quot;success&quot; (click)&#x3D;&quot;qrcode()&quot; expand&#x3D;&quot;block&quot;&gt;Valider&lt;/ion-button&gt;
         &lt;ion-button *ngIf&#x3D;&quot;isValidate&quot; color&#x3D;&quot;dark&quot; disabled expand&#x3D;&quot;block&quot;&gt;Trajet clôturé&lt;/ion-button&gt;
       &lt;/ion-col&gt;
     &lt;/ion-row&gt;
@@ -2006,7 +1945,7 @@ async openModalComplaint() {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-buttons slot="start">      <ion-back-button  (click)= "goBack()"></ion-back-button>    </ion-buttons>    <ion-buttons slot="end">      <ion-button *ngIf="!isValidate"  (click)="validate()" >        <ion-icon  slot="icon-only" name="checkmark-circle-outline"></ion-icon>      </ion-button>      <ion-button *ngIf="isValidate" disabled >        <ion-icon slot="icon-only"  name="checkmark-circle"></ion-icon>      </ion-button>    </ion-buttons>    <ion-title>      Détail du trajet    </ion-title>  </ion-toolbar></ion-header><ion-content >  <div  *ngIf="info" class="ion-padding">    <h1>{{info.depart}} &ndash; {{info.arrivee}}</h1>    <p *ngIf="info.prix">{{info.prix}}</p>    <p *ngIf="info.book_places">nombre de passagers: {{info.book_places}}</p>    <ion-list *ngFor="let Colis of colis" [hidden]="Colis.hide">      <h3>Colis:</h3>      <ion-item>        <ion-label>          <h4>{{Colis.nom}}</h4>          <p *ngIf="Colis.poids">{{Colis.poids}} Kg</p>          <p *ngIf="Colis.dimension">{{Colis.dimension}} </p>        </ion-label>      </ion-item>    </ion-list>    <!---    <ion-text color="medium">      {{Bdd.timeStart}} &ndash; {{Bdd.timeEnd}}    </ion-text>    --->    <ion-row>      <ion-col>        <ion-button  *ngIf="!isValidate" color="success" (click)="validate()" (click)="qrcode()" expand="block">Valider</ion-button>        <ion-button *ngIf="isValidate" color="dark" disabled expand="block">Trajet clôturé</ion-button>      </ion-col>    </ion-row>    <ion-row>      <ion-col>        <ion-button  *ngIf ="!idCar && !isValidate"  align="left" color="primary" (click)="goToMap()"   expand="block">Voir la carte</ion-button>      </ion-col>      <ion-col>        <h5 *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalRating()"><ion-icon name="thumbs-up"></ion-icon> Donnez votre avis</h5>        <p *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalComplaint()"> Un problème lors du trajet?</p>      </ion-col>    </ion-row>  </div><!---    <ion-list #trajetList *ngIf="session" [hidden]="shownSteps === 0">      <ion-item-group>        <ion-item-sliding *ngFor="let step of session.steps" [hidden]="step.hide">          <ion-item routerLink ="/tabs/trajet/session/sessionId/step/{{step.id}}">            <ion-label>              <h3>{{step.cityStart}} &mdash; {{step.cityStop}} </h3>              <p>{{step.timeStart}} &mdash; {{step.timeEnd}}</p>            </ion-label>          </ion-item>        </ion-item-sliding>      </ion-item-group>    </ion-list>---></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-buttons slot="start">      <ion-back-button  (click)= "goBack()"></ion-back-button>    </ion-buttons>    <ion-buttons slot="end">      <ion-button *ngIf="!isValidate"  (click)="qrcode()" >        <ion-icon  slot="icon-only" name="checkmark-circle-outline"></ion-icon>      </ion-button>      <ion-button *ngIf="isValidate" disabled >        <ion-icon slot="icon-only"  name="checkmark-circle"></ion-icon>      </ion-button>    </ion-buttons>    <ion-title>      Détail du trajet    </ion-title>  </ion-toolbar></ion-header><ion-content >  <div  *ngIf="info" class="ion-padding">    <h1>{{info.depart_address}} &ndash; {{info.arrivee_address}}</h1>    <p *ngIf="info.book_places">nombre de passagers: {{info.book_places}}</p>    <p *ngIf="info.prix">{{info.prix}} €</p>    <ion-list *ngFor="let Colis of colis" [hidden]="Colis.hide">      <h5>Colis:</h5>      <ion-item>        <ion-label>          <h4>{{Colis.nom}}</h4>          <p *ngIf="Colis.poids">{{Colis.poids}} Kg</p>          <p *ngIf="Colis.dimension">{{Colis.dimension}} </p>        </ion-label>      </ion-item>    </ion-list>    <!---    <ion-text color="medium">      {{Bdd.timeStart}} &ndash; {{Bdd.timeEnd}}    </ion-text>    --->    <ion-row>      <ion-col>        <ion-button  *ngIf="!isValidate" color="success" (click)="qrcode()" expand="block">Valider</ion-button>        <ion-button *ngIf="isValidate" color="dark" disabled expand="block">Trajet clôturé</ion-button>      </ion-col>    </ion-row>    <ion-row>      <ion-col>        <ion-button  *ngIf ="!idCar && !isValidate"  align="left" color="primary" (click)="goToMap()"   expand="block">Voir la carte</ion-button>      </ion-col>      <ion-col>        <h5 *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalRating()"><ion-icon name="thumbs-up"></ion-icon> Donnez votre avis</h5>        <p *ngIf="!isValidate" style="color:rgb(172,169,169)" align="right"  (click)="openModalComplaint()"> Un problème lors du trajet?</p>      </ion-col>    </ion-row>  </div><!---    <ion-list #trajetList *ngIf="session" [hidden]="shownSteps === 0">      <ion-item-group>        <ion-item-sliding *ngFor="let step of session.steps" [hidden]="step.hide">          <ion-item routerLink ="/tabs/trajet/session/sessionId/step/{{step.id}}">            <ion-label>              <h3>{{step.cityStart}} &mdash; {{step.cityStop}} </h3>              <p>{{step.timeStart}} &mdash; {{step.timeEnd}}</p>            </ion-label>          </ion-item>        </ion-item-sliding>      </ion-item-group>    </ion-list>---></ion-content></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'ModalComplaintPage', 'selector': 'app-modal-complaint'},{'name': 'ModalRatingPage', 'selector': 'app-modal-rating'},{'name': 'QRCodePage', 'selector': 'app-qrcode'},{'name': 'StepDetailPage', 'selector': 'app-step-detail'},{'name': 'Tab3Page', 'selector': 'app-tab3'},{'name': 'TabsPage', 'selector': 'app-tabs'},{'name': 'TrajetDetailPage', 'selector': 'app-trajet-detail'},{'name': 'TrajetPage', 'selector': 'app-trajets'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TrajetDetailPage'};

@@ -129,6 +129,7 @@ export class UserData {
 *@param {int} rating
 */
   sendRatingbdd(idUser, rating){
+    console.log("idUser:"+ idUser + " rating : "+ rating)
     let parameters= new HttpParams().set('idUser', idUser).append('rating', rating);
     console.log(parameters);
   //  return this.http.get(this.ratingUrl, {params:parameters, responseType : 'text'});

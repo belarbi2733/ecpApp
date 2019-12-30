@@ -40,6 +40,24 @@ app.get('/code', function(req, res){
   console.log("code here in node! ");
 });
 
+app.get('/comment', (req, res)=>{
+  let comment = req.query['comment'];
+  console.log("comment" + comment)
+  let id = req.query['id'];
+  console.log("id: "+ id);
+  Trajet.setComment(req, function(err, result){
+    console.log('err: '+err);
+    if(err){
+      res.statut(400).json(err);
+      console.log("erreur");
+    }
+    else{
+      res.send(true);
+    }
+    console.log("Send comment in node!")
+  });
+});
+
 app.post('/validate', function(req, res){
   console.log("Id "+req.body.id)
   Trajet.validateStatus(req.body.id, function(err, result){
@@ -129,6 +147,7 @@ app.get('/rating' , (req,res)=> {
   let idUser = req.query['idUser'];
   console.log("idUser" + idUser)
   let rating = req.query['rating'];
+  console.log("rating: "+ rating);
   User.getDataById(idUser, function(err, result) {
     if(err) {
       res.status(400).json(err);
@@ -139,13 +158,25 @@ app.get('/rating' , (req,res)=> {
       let newNote = rating; /*Instance new note from mobile app*/
       let avrRating = userData.avr_rating;
       let nbrRatings = userData.nbr_ratings;
+      console.log("rating info : "+newNote + "-" + avrRating + "-" + nbrRatings  )
+      let newRating=0;
+      console.log("newrating : "+newRating  )
+      newRating= (avrRating*nbrRatings);
+      console.log("newrating 2: "+newRating  )
 
-      let newRating = ((avrRating*nbrRatings)+newNote)/(nbrRatings+1);
+      newRating = (newRating-0)+(newNote-0);
+      console.log("newrating 3: "+newRating  )
+
+      newRating = newRating/(nbrRatings+1);
+      //newRating = ((avrRating*nbrRatings)+newNote)/(nbrRatings+1);
+      console.log("newrating 4: "+newRating  )
 
       newRating = newRating.toFixed(2); /* Round the result to 2 decimal */
       userData.avr_rating = newRating;
       userData.nbr_ratings = nbrRatings + 1;
       result.rows[0] = userData ;
+      console.log("newrating 5 : "+newRating  )
+
       User.updateUtilisateur(result.rows[0], function(err, result){
         if(err){
           res.status(400).json;

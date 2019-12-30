@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {TrajetOptions} from '../interfaces/trajet-options';
 import { HttpModule } from '@angular/http';
+import { HttpClient , HttpParams} from '@angular/common/http';
 
 import { UserData } from './user-data';
 
@@ -25,11 +25,30 @@ export class TrajetData {
   trajConductServiceUrl = this.Url +"trajetConduct";
   validateServiceUrl = this.Url +"validate";
   trajetColisServiceURL = this.Url +"trajetColis";
+  CommentServiceURL = this.Url +"comment";
 
   constructor( public http: HttpClient) {}
 
   getCodebdd(data: TrajetOptions){
     return this.http.post(this.getCodeServiceUrl, data);
+  }
+
+  sendCommentbdd(comment, id){
+    console.log("comment:"+ comment + " id : "+ id)
+    let parameters= new HttpParams().set('comment', comment).append('id', id);
+    console.log(parameters);
+
+    return new Promise((resolve, reject) => {
+      this.http.get(this.CommentServiceURL, {params:parameters}).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          console.log('Error occured sending comment:' + err);
+          reject();
+        }
+      );
+    });
   }
 
   validateStatusbdd(data: TrajetOptions){

@@ -11,7 +11,9 @@ import { TrajetOptions } from '../../interfaces/trajet-options';
 import { TrajetData } from '../../providers/trajet-data';
 
 let resp: any;
-
+/**
+*List of steps of a round of a driver
+*/
 @Component({
   selector: 'app-step-detail',
   styleUrls: ['./step-detail.page.scss'],
@@ -23,7 +25,7 @@ export class StepDetailPage{
 
 
   session: any = [];
-  defaultHref = '';
+  defaultHref = `/tabs/trajet`;
   isValidate = false;
   step: any = [];
   bddTraj: any =[];
@@ -39,7 +41,9 @@ export class StepDetailPage{
   trajet: TrajetOptions=  { idUser: null, idColis: null,idTour: null, depart: '', arrivee: '', date: '', id: null, code: null};
 
 
-
+/**
+*@ignore
+*/
   constructor(
   private dataProvider: TrajetData,
   public router: Router,
@@ -48,51 +52,28 @@ export class StepDetailPage{
   public tourData: TourneeData,
   public modalCtrl: ModalController,
   public trajData: TrajetData
-  ){}
+  ){  }
 
 
-
+/**
+*[getIdCar]{@link StepDetailPage.html#getIdCar} then [getIdTour]{@link StepDetailPage.html#getIdTour} before [TrajetBdd]{@link StepDetailPage.html#TrajetBdd}
+*/
   ngOnInit() {
-    this.getIdCar();
-
-
+      this.getIdCar();
       this.getIdTour();
       setTimeout(()=>{
         this.TrajetBdd();
       }, 200);
-
-    /*
-    this.dataProvider.load().subscribe((data: any) => {
-      if (data && data.trajet && data.trajet[0] && data.trajet[0].groups) {
-        const stepId = this.route.snapshot.paramMap.get('stepId');
-        for (const group of data.trajet[0].groups) {
-          if (group && group.sessions) {
-            for (const session of group.sessions) {
-
-              if(session && session.steps){
-                for (const step of session.steps){
-                  if(step && step.id === stepId){
-                    this.step = step;
-                    break;
-                  }
-
-                }
-              }
-            }
-          }
-        }
-      }
-    });*/
   }
 
 
-
+  /**
+  *Get all rides corresponding to the round [getTrajetAllbdd]{@link ../injectables/TrajetData.html#getTrajetAllbdd}
+  */
   TrajetBdd(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
-    console.log("idTourr33: "+ this.trajet.idTour)
-    console.log (typeof this.trajet.idTour)
     this.trajData.getTrajetAllbdd(this.trajet).then((response)=>{
       console.log('get: ', response);
       this.bddTraj = response;
@@ -104,23 +85,26 @@ export class StepDetailPage{
           console.log('depart: ', BddTraj.depart);
           console.log('arrivee: ', BddTraj.arrivee)
           console.log( this.Info);
-
         }
         for( const info of this.Info){
           this.info = info;
-          
         }
-
       });
     });
   }
 
+/**
+*Get id of the round from route parameter
+*/
   getIdTour(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
     this.trajet.idTour = bddId;
   }
 
+/**
+*Get idCar from database [getIdCarbdd]{@link ../injectables/TourneeData.html#getIdCarbdd}
+*/
   getIdCar(){
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id;
     console.log(this.trajet.idUser);
@@ -135,63 +119,17 @@ export class StepDetailPage{
         this.tournee.idCar = resp;
         console.log('get Car: ', this.tournee.idCar);
       }
-      else{console.log("passager")}
     }).catch(() => {
       console.log('Error in getIdCar');
     });
   }
 
+/**
+*Go to map view with informations
+*/
   goToMap(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
     this.router.navigateByUrl('/tabs/trajet/map/'+bddId+'/2/'+  bddId);
   }
-
-
-  /*
-
-  updateSteps(){
-    this.dataProvider.getSteps(this.dayIndex, this.queryText, this.segment).subscribe((data: any) =>{
-      this.shownSteps = data.shownSteps;
-    })
-  }
-*/
-  ionViewDidEnter() {
-  this.defaultHref = `/tabs/trajet`;
-
-}
-
-/*
-
-sessionClick(item: string) {
-  console.log('Clicked', item);
-}*/
-/*
-validate() {
-    if (this.userProvider.hasValidate(this.session.id)) {
-      //add popup déjà validé
-      this.isValidate = true;
-    } else {
-      this.userProvider.addValidation(this.session.id);
-      this.isValidate = true;
-    }
-  }
-*/
-
-/*
-async openModalRating() {
-    const modal = await this.modalCtrl.create({
-      component: ModalRatingPage
-    });
-    return await modal.present();
-  }
-
-async openModalComplaint() {
-      const modal = await this.modalCtrl.create({
-        component: ModalComplaintPage
-      });
-      return await modal.present();
-    }
-*/
-
 }

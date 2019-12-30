@@ -9,7 +9,9 @@ import { TrajetOptions } from '../../interfaces/trajet-options';
 import { TourneeOptions } from '../../interfaces/tournee-options';
 import { ColisData } from '../../providers/colis-data';
 
-
+/**
+*List of rides or round
+*/
 @Component({
   selector: 'app-trajets',
   templateUrl: 'trajet.page.html',
@@ -49,21 +51,6 @@ export class TrajetPage {
   ) {
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
   }
-/////passager -> idCar False///////
-//cherche la tournée dans laquelle il est ->getTourneeId - getIdTourneebdd (trajet)
-//affiche la tournée ->getTourneeAll - getTourneeAllbdd(trajet)
-//->affiche le trajet dans lequel il est : getTrajetbdd
-//id tournee -> affiche tournée info
-//donne toutes les infos de la tournée->getTrajetAll - getTrajetAllbdd(trajet)
-
-
-/////conducteur -> idCar True///////
-//selectionne le conducteur
-//selectionne ses tournées ->getTournee - getTourneebdd(tournee)
-// selectionne l'id tournee ->getIdTournee -getIdTourbdd(tournee)
-//selectionne tout trajet en rapport avec ses tournées pour infos ->getTrajetAll - getTrajetAllbdd(trajet)
-
-
 
   /**
   *Call functions that are usefull
@@ -140,7 +127,7 @@ export class TrajetPage {
   }
 
   /**
-  *Update traject list
+  *Update rides list
   *
   *If driver, get [TourneeBdd]{@link TrajetPage.html#TourneeBdd}
   *
@@ -156,14 +143,13 @@ export class TrajetPage {
       }, 200);
     }else {
       if(this.idCar === true){
-      //  this.TrajetOnlyBdd();
         this.TourneeBdd();
       }
     }
   }
 
   /**
-  *Get trajet from database [getTrajetbdd]{@link ../injectables/TrajetData.html#getTrajetbdd} to display them in a list
+  *Get rides from database [getTrajetbdd]{@link ../injectables/TrajetData.html#getTrajetbdd} to display them in a list
   */
   TrajetBdd(){
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
@@ -184,7 +170,7 @@ export class TrajetPage {
 
 
   /**
-  *
+  *Get round from database [getTourneebdd]{@link ../injectables/TourneeData.html#getTourneebdd} to display them on a list
   */
   TourneeBdd(){
     this.tournee.idUser = JSON.parse(localStorage.getItem('idUser')).id;
@@ -197,34 +183,14 @@ export class TrajetPage {
         console.log(BddTour.date);
         BddTour.date = this.Date(BddTour.date)
         console.log("DATE "+BddTour.date)
-
-      //  this.heure_arrivee= BddTour.heure_depart + BddTour.duree;
-      //  console.log(this.heure_arrivee);
         BddTour.hide;
       });
     });
   }
 
-  TrajetOnlyBdd(){
-    this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
-    console.log(this.trajet.idUser);
-
-    this.tourData.getTrajetOnlybdd(this.trajet).then((response)=>{
-      console.log('get: ', response);
-      this.bddTraj = response;
-      this.bddTraj.forEach((BddTraj: any)=>{
-        this.shownSessions++;
-        console.log('depart: ', BddTraj.depart);
-        console.log('arrivee: ', BddTraj.arrivee);
-        console.log(BddTraj.date);
-        BddTraj.date = this.Date(BddTraj.date)
-        console.log("DATE "+BddTraj.date)
-
-        BddTraj.hide;
-      });
-    });
-  }
-
+/**
+*Get package of a traveller from database [getColisOnlybdd]{@link ../injectables/ColisData.html#getColisOnlybdd} to display them on a list
+*/
   getColisOnly(){
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
     console.log(this.trajet.idUser);
@@ -235,12 +201,15 @@ export class TrajetPage {
         console.log(colis.date);
         colis.date = this.Date(colis.date)
         console.log("DATE "+colis.date)
-
         colis.hide;
       });
     });
   }
 
+/**
+*Transform sql date type to js date type
+*@param {string} sqlDate
+*/
   Date(sqlDate){
     var sqlDateArr1  = sqlDate.split("-");
     var year =  sqlDateArr1 [0];
@@ -248,6 +217,6 @@ export class TrajetPage {
     var sqlDateArr2 = sqlDateArr1[2].split("T");
     var day = sqlDateArr2[0];
     return day+'/'+month+'/'+year;
-
   }
+
 }

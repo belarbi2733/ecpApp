@@ -14,12 +14,12 @@
       <ion-item-sliding>
               <ion-item color = "light" routerLink="/tabs/trajet/BddTraj/{{BddTraj.id}}">
                 <ion-label>
-                  <h2>{{BddTraj.depart}} &mdash; {{BddTraj.arrivee}} </h2>
+                  <h2>{{BddTraj.depart_address}} &mdash; {{BddTraj.arrivee_address}} </h2>
                   <h3>{{BddTraj.date}} </h3>
                   <p>
                       {{BddTraj.departure_time}}
                   </p>
-                  
+
                 </ion-label>
               </ion-item>
       </ion-item-sliding>
@@ -31,7 +31,7 @@
       <ion-item-sliding>
               <ion-item color ="medium"  routerLink="/tabs/trajet/BddTour/{{BddTour.id}}">
                 <ion-label>
-                  <h2>{{BddTour.depart}} &mdash; {{BddTour.arrivee}} </h2>
+                  <h2>{{BddTour.depart_address}} &mdash; {{BddTour.arrivee_address}} </h2>
                   <h3>{{BddTour.date}} </h3>
                   <p>
                    {{BddTour.heure_depart}}
@@ -47,7 +47,7 @@
       <ion-item-sliding>
               <ion-item color = "light" routerLink="/tabs/trajet/BddTraj/{{colis.id_colis}}">
                 <ion-label>
-                  <h2>{{colis.depart}} &mdash; {{colis.arrivee}} </h2>
+                  <h2>{{colis.depart_address}} &mdash; {{colis.arrivee_address}} </h2>
                   <h3>{{colis.date}}</h3>
                   <p>
                     colis: {{colis.nom}}

@@ -37,6 +37,9 @@ let Trajet = {
   },
   validateStatus: function(id, callback){
     return db.query('update trajet set statut=2 where id = $1', [id], callback);
+  },
+  setComment: function(info, callback){
+    return db.query('update trajet set comment = $1 where id= $2', [info.query['comment'], info.query['id']], callback);
   }
 };
 module.exports = Trajet;

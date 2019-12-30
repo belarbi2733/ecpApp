@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/app/providers/user-data.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/app/providers/user-data.ts:156</a></div>
                 </td>
             </tr>
 
@@ -381,8 +381,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="150"
-                            class="link-to-prism">src/app/providers/user-data.ts:150</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/app/providers/user-data.ts:151</a></div>
                 </td>
             </tr>
 
@@ -1070,6 +1070,7 @@ export class UserData {
 *@param {int} rating
 */
   sendRatingbdd(idUser, rating){
+    console.log(&quot;idUser:&quot;+ idUser + &quot; rating : &quot;+ rating)
     let parameters&#x3D; new HttpParams().set(&#x27;idUser&#x27;, idUser).append(&#x27;rating&#x27;, rating);
     console.log(parameters);
   //  return this.http.get(this.ratingUrl, {params:parameters, responseType : &#x27;text&#x27;});

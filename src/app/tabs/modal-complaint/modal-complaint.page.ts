@@ -3,6 +3,8 @@ import { Config, ModalController,NavParams , AlertController, ToastController } 
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {ModalRatingPage} from '../modal-rating/modal-rating.page';
+import { TrajetData } from '../../providers/trajet-data';
+
 
 
 
@@ -18,8 +20,10 @@ export class ModalComplaintPage implements OnInit {
   supportMessage: string;
   isClosed = false;
 
+  @Input() idTraj: number;
 
   constructor(
+    private trajetData: TrajetData,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController
@@ -32,6 +36,17 @@ export class ModalComplaintPage implements OnInit {
   dismiss(data?: any) {
     this.modalCtrl.dismiss(data);
   }
+
+ sendComment(){
+    setTimeout(()=>{
+      console.log("comment"+this.supportMessage)
+      console.log("id"+this.idTraj)
+      this.trajetData.sendCommentbdd(this.supportMessage, this.idTraj).then((response)=>{
+        console.log(response);
+      });
+    }, 300);
+  }
+
   async openModalRating() {
       const modal = await this.modalCtrl.create({
         component: ModalRatingPage
@@ -46,9 +61,9 @@ export class ModalComplaintPage implements OnInit {
 
 
       if (form.valid ) {
-
+        console.log("support mess: "+this.supportMessage)
         this.submittedMess = false;
-
+        this.sendComment();
         const toast = await this.toastCtrl.create({
           message: 'Votre message a été envoyé à l\'administrateur',
           duration: 3000

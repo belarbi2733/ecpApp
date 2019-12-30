@@ -11,7 +11,9 @@ import { TrajetOptions } from '../../interfaces/trajet-options';
 import { ColisData } from '../../providers/colis-data';
 import { TourneeData } from '../../providers/tournee-data';
 
-
+/**
+*Informations about a ride
+*/
 @Component({
   selector: 'app-trajet-detail',
   styleUrls: ['./trajet-detail.page.scss'],
@@ -26,6 +28,8 @@ export class TrajetDetailPage{
   info: any = [];
   defaultHref = '';
   isValidate = false;
+  rate = false;
+  complain = false;
   step: any = [];
   dayIndex = 0;
   queryText = '';
@@ -39,16 +43,24 @@ export class TrajetDetailPage{
   idTour: number= null;
   idUser: number= null;
   statut= null;
+  commentbdd : string ;
 
+
+/**
+*[getIdCar]{@link TrajetDetailPage.html#getIdCar} before get informations about ride
+*
+*If driver, get ride informations [TrajetConduct]{@link TrajetDetailPage.html#TrajetConduct} and check validation status of the ride
+*
+*If traveller, get ride informations [getTrajetColis]{@link TrajetDetailPage.html#getTrajetColis} and [Trajetbdd]{@link TrajetDetailPage.html#Trajetbdd}and check validation status of the ride
+*/
   constructor(
-  private dataProvider: TrajetData,
+  private trajetData: TrajetData,
   public tourData: TourneeData,
   public router: Router,
   private userProvider: UserData,
   private route: ActivatedRoute,
   public colisData: ColisData,
   public modalCtrl: ModalController
-
   ){
     this.getIdCar();
     setTimeout(()=>{
@@ -56,64 +68,50 @@ export class TrajetDetailPage{
         this.TrajetConduct();
         setTimeout(()=>{
           console.log("statuuuuut "+this.statut)
+          console.log("commmeeent "+this.commentbdd)
           if(this.statut > 1){
             this.isValidate = true;
+          }
+          if(this.commentbdd != null){
+            this.complain = true;
           }
         }, 300);
 
       }else{
         if(this.idCar===false){
           this.getTrajetColis();
-          this.dataLoading();
+          this.Trajetbdd();
           setTimeout(()=>{
             console.log("statuuuuut "+this.statut)
+            console.log("commmeeent "+this.commentbdd)
             if(this.statut > 1){
               this.isValidate = true;
             }
+            if(this.commentbdd != null){
+              this.complain = true;
+            }
           },300);
-
         }
       }
     }, 300);
   }
 
-  ionViewWillEnter() {
+/**
+*@ignore
+*/
+  ionViewWillEnter() {}
 
-
-
-    /*this.dataProvider.load().subscribe((data: any) => {
-      if (data && data.trajet && data.trajet[0] && data.trajet[0].groups) {
-        const sessionId = this.route.snapshot.paramMap.get('sessionId');
-        for (const group of data.trajet[0].groups) {
-          if (group && group.sessions) {
-            for (const session of group.sessions) {
-              if (session && session.id === sessionId) {
-                this.session = session;
-                this.isValidate = this.userProvider.hasValidate(
-                  this.session.id
-                );
-              }
-              if(session && session.steps){
-                for (const step of session.steps){
-                  this.step = step;
-                  this.updateSteps();
-                }
-              }
-            }
-          }
-        }
-      }
-    });*/
-  }
-
-  dataLoading(){
+/**
+*Get informations [getTrajetbdd]{@link }about the ride in case of a traveller to display them on the app then [getColis]{@link }
+*/
+  Trajetbdd(){
     console.log("PASSAGERRRRRRR")
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
     this.defaultHref=`/tabs/trajet`;
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
 
-    this.dataProvider.getTrajetbdd(this.trajet).then((response)=>{
+    this.trajetData.getTrajetbdd(this.trajet).then((response)=>{
       console.log('get: ', response);
       this.bdd = response;
       this.bdd.forEach((Bdd: any)=>{
@@ -125,16 +123,17 @@ export class TrajetDetailPage{
           this.idTour = Bdd.id_tournee;
           this.id= Bdd.id;
           this.statut = Bdd.statut;
+          this.commentbdd = Bdd.comment;
           this.trajet.idColis = Bdd.id_colis;
           this.getColis(this.trajet);
-
-          //this.isValidate = this.userProvider.hasValidate(this.info.id);
         }
       });
-
     });
   }
 
+/**
+*Get informations [getTrajetConductbdd]{@link }about the ride in case of a driver to display them on the app then [getColis]{@link }
+*/
   TrajetConduct(){
     console.log("CONDUCTEUUUUUUUUUR")
 
@@ -142,7 +141,7 @@ export class TrajetDetailPage{
     bddId=parseInt(bddId);
     this.trajet.id = bddId;
 
-    this.dataProvider.getTrajetConductbdd(this.trajet).then((response)=>{
+    this.trajetData.getTrajetConductbdd(this.trajet).then((response)=>{
       console.log('get: ', response)
 
       this.bdd = response;
@@ -158,21 +157,22 @@ export class TrajetDetailPage{
           console.log('arrivee: ', Bdd.arrivee);
           this.idUser = Bdd.id_user;
           this.statut = Bdd.statut;
+          this.commentbdd = Bdd.comment;
           this.trajet.idColis = Bdd.id_colis;
           this.getColis(this.trajet);
-
-        //  this.isValidate = this.userProvider.hasValidate(this.info.id);
         }
       });
-
     });
   }
 
+/**
+*Get packages [getTrajetColisbdd]{@link } related to the ride in case of a traveller to display them on the app then [getColis]{@link }
+*/
   getTrajetColis(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     bddId=parseInt(bddId);
     this.trajet.idColis = bddId;
-    this.dataProvider.getTrajetColisbdd(this.trajet).then((response)=>{
+    this.trajetData.getTrajetColisbdd(this.trajet).then((response)=>{
       console.log(response);
       this.bdd = response;
       this.bdd.forEach((Bdd: any)=>{
@@ -182,6 +182,9 @@ export class TrajetDetailPage{
     });
   }
 
+/**
+*Get informations [getColisbdd]{@link }about packages
+*/
   getColis(colisId : any ){
     console.log("id colis: "+colisId.idColis)
     this.colisData.getColisbdd(colisId).then((response)=>{
@@ -193,44 +196,40 @@ export class TrajetDetailPage{
       });
     });
   }
-/*
-  updateSteps(){
-    this.dataProvider.getSteps(this.dayIndex, this.queryText, this.segment).subscribe((data: any) =>{
-      this.shownSteps = data.shownSteps;
-    })
-  }
+
+/**
+*@ignore
 */
-  ionViewDidEnter() {
-}
+  ionViewDidEnter() {}
 
+/**
+*function that define route navigation to ga back to the previous view
+*/
 goBack(){
-
-  console.log("hey"+this.defaultHref)
-
+  console.log("defaultHref"+this.defaultHref)
   this.router.navigateByUrl(this.defaultHref);
 }
 
+/**
+*Go to map view with informations in case of a traveller
+*/
 goToMap(){
   let bddId: any = this.route.snapshot.paramMap.get('bddId');
   bddId=parseInt(bddId);
   this.router.navigateByUrl('/tabs/trajet/map/'+this.idTour+'/1/'+bddId);
 }
 
-sessionClick(item: string) {
-  console.log('Clicked', item);
-}
-
-validate() {
-  this.dataProvider.validateStatusbdd(this.info).then((response)=>{
-    console.log("validation status: "+ response);
-  });
-}
-
+/**
+*Go to the QRCode view to validate the journey
+*/
   qrcode(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
     this.router.navigateByUrl('/tabs/trajet/qrcode/'+bddId);
   }
 
+  /**
+  *Get idCar from database [getIdCarbdd]{@link ../injectables/TourneeData.html#getIdCarbdd}
+  */
   getIdCar(){
     this.idCar=false;
 
@@ -250,7 +249,11 @@ validate() {
     });
   }
 
+/**
+*Open the modal to rate the other user [ModalRatingPage]{@link ModalRatingPage.html}
+*/
 async openModalRating() {
+  this.rate = true;
     const modal = await this.modalCtrl.create({
       component: ModalRatingPage,
       componentProps: {
@@ -261,10 +264,30 @@ async openModalRating() {
     return await modal.present();
   }
 
+  /**
+  *Open the modal to complain about the other user [ModalComplaintPage]{@link ModalComplaintPage.html}
+  */
 async openModalComplaint() {
+  this.complain = true;
+  let bddId: any = this.route.snapshot.paramMap.get('bddId');
+  bddId=parseInt(bddId);
       const modal = await this.modalCtrl.create({
-        component: ModalComplaintPage
+        component: ModalComplaintPage,
+        componentProps: {
+          'idTraj': bddId
+        }
       });
       return await modal.present();
     }
 }
+
+/**
+*@ignore
+*/
+/*
+validate() {
+  this.trajetData.validateStatusbdd(this.info).then((response)=>{
+    console.log("validation status: "+ response);
+  });
+}
+*/

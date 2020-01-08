@@ -7,6 +7,7 @@ import { TourneeOptions } from '../interfaces/tournee-options';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PositionService } from '../providers/position';
 
+
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -18,6 +19,9 @@ export class TabsPage {
   id: number;
   locTab:String[]= [];
 
+/**
+*@ignore
+*/
   constructor(
     private events: Events,
     private userData: UserData,
@@ -29,8 +33,14 @@ export class TabsPage {
   ) {
    }
 
+  /**
+  *Initialise les valeurs du localstorage
+  *then [checkLoginStatus]{@link TabsPage.html#checkLoginStatus}
+  *and [listenForLoginEvents]{@link TabsPage.html#listenForLoginEvents}
+  *
+  *When the user is log, the app watch his location [watch]{@link TabsPage.html#watch}
+  */
   ngOnInit() {
-
       if (localStorage.length === 0) { // Si le localStorage est vide, le remplir avec les valeurs par défaut
         console.log('Défaut');
         const isLogJson = {isLog: false};
@@ -46,9 +56,13 @@ export class TabsPage {
   if(this.loggedIn){
     this.watch();
   }
-
 }
 
+/**
+*Function that watch frequently the location of the user's device
+*
+*It save the location into the data base with [positionSend]{@link TabsPage.html#positionSend}
+*/
   watch(){
     const watch = this.geolocation.watchPosition({enableHighAccuracy : true, timeout : 1000}).subscribe(position =>{
       if(position.coords !== undefined){
@@ -63,7 +77,10 @@ export class TabsPage {
       }
     });
   }
-    //Sauve la position de l'utilisateur dans la DB
+
+  /**
+  *Save location of the user in data base [sendPosition]{@link ../injectables/PositionService.html#sendPosition}
+  */
     positionSend(lat, long){
       this.id = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
       this.posApi.sendPosition(lat, long, this.id).subscribe((response)=>{
@@ -71,17 +88,19 @@ export class TabsPage {
       });
     }
 
+    /**
+    *Function that check if a user is log yet or not with [isLog]{@link ../injectables/UserData.html#isLog}
+    */
   checkLoginStatus() {
-  //  return this.userData.isLoggedIn().then(loggedIn => {
-  //    return this.updateLoggedInStatus(loggedIn);
       this.loggedIn = this.userData.isLog;
       console.log("loggedIn: "+ this.loggedIn)
       return this.loggedIn;
-
-      //= JSON.parse(localStorage.getItem('isLog')).isLog; // Loading loginstatus in localStorage
-    //});
   }
 
+  /**
+  *update the login status of the user
+  *@param{boolean}loggedIn
+  */
   updateLoggedInStatus(loggedIn: boolean) {
     setTimeout(() => {
       this.loggedIn = loggedIn;
@@ -89,8 +108,11 @@ export class TabsPage {
 
   }
 
+  /**
+  *Listen to events if user log in or out
+  *to update the status [updateLoggedInStatus]{@link TabsPage.html#updateLoggedInStatus}
+  */
   listenForLoginEvents() {
-
     this.events.subscribe('user:login', () => {
       this.updateLoggedInStatus(true);
     });
@@ -100,6 +122,9 @@ export class TabsPage {
 
   }
 
+/**
+*Function that log out the user [logoutfunc]{@link ../injectables/UserData.html#logoutfunc}
+*/
   logout() {
    this.userData.logoutfunc().then(() => {
       return this.loggedIn= this.userData.isLog;
@@ -108,6 +133,9 @@ export class TabsPage {
     });
   }
 
+  /**
+  *Toast to alert the user that he has to login before accessing any other pages
+  */
   async toast() {
     const toast = await this.toastController.create({
       message: 'Vous devez vous connecter',

@@ -105,9 +105,6 @@
                                 <a href="#checkCodebdd">checkCodebdd</a>
                             </li>
                             <li>
-                                <a href="#getCode">getCode</a>
-                            </li>
-                            <li>
                                 <a href="#getCodebdd">getCodebdd</a>
                             </li>
                             <li>
@@ -125,54 +122,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/providers/serviceData.ts:16</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>http</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -201,14 +150,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/providers/serviceData.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/providers/serviceData.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function that compare the code that is scan with the code relative to the ride from de the database</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -253,45 +204,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getCode"></a>
-                    <span class="name">
-                        <b>
-                            getCode
-                        </b>
-                        <a href="#getCode"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getCode()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/providers/serviceData.ts:20</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getCodebdd"></a>
                     <span class="name">
                         <b>
@@ -310,14 +222,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/providers/serviceData.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/providers/serviceData.ts:34</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Get the code that is relative to a ride from the data base</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -380,14 +294,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/providers/serviceData.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app/providers/serviceData.ts:67</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Compare login informations that the user types in with informations from the data base to confirm and log the user in</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -592,17 +508,31 @@ export class ServiceData{
   userServiceUrl&#x3D; this.Url + &quot;login&quot;;
   getCodeServiceUrl &#x3D; this.Url + &quot;getCode&quot;;
   checkCodeServiceUrl &#x3D; this.Url + &quot;checkCode&quot;;
-
+  /**
+  *@ignore
+  */
   constructor( private http : HttpClient){  }
 
+  /**
+  *Function that is not usefull anymore
+  *@ignore
+  */
   getCode(){
     return this.http.get(this.codeServiceUrl);
   }
 
+  /**
+  *Get the code that is relative to a ride from the data base
+  *@param{TrajetOptions}data
+  */
   getCodebdd(data: TrajetOptions){
     return this.http.post(this.getCodeServiceUrl,data);
   }
 
+  /**
+  *Function that compare the code that is scan with the code relative to the ride from de the database
+  *@param{TrajetOptions}data
+  */
   checkCodebdd(data: TrajetOptions){
     return new Promise((resolve, reject)&#x3D;&gt;{
         this.http.post(this.checkCodeServiceUrl, data).subscribe(res&#x3D;&gt;{
@@ -624,6 +554,10 @@ export class ServiceData{
     });
   }
 
+  /**
+  *Compare login informations that the user types in with informations from the data base to confirm and log the user in
+  *@param{UserOptions}data 
+  */
   loginDbb(data: UserOptions){
     return new Promise((resolve, reject)&#x3D;&gt;{
         this.http.post(this.userServiceUrl, data).subscribe(res&#x3D;&gt;{

@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {TrajetOptions} from '../interfaces/trajet-options';
-import { HttpModule } from '@angular/http';
 import { HttpClient , HttpParams} from '@angular/common/http';
-
-import { UserData } from './user-data';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +13,6 @@ export class TrajetData {
   //  Url= "http://bdd.easy-carpool.com/";
   Url = "http://localhost:8080/";
   trajetServiceUrl = this.Url +"trajet";
-  trajetIdColisServiceUrl = this.Url +"getIdColis";
-  tourneeIdServiceUrl = this.Url +"getTourneeId";
   trajAllServiceUrl = this.Url +"trajetAll";
   getCodeServiceUrl = this.Url +"getCode";
   trajConductServiceUrl = this.Url +"trajetConduct";
@@ -27,12 +20,24 @@ export class TrajetData {
   trajetColisServiceURL = this.Url +"trajetColis";
   CommentServiceURL = this.Url +"comment";
 
+  /**
+  *@ignore
+  */
   constructor( public http: HttpClient) {}
 
+  /**
+  *Get code of the ride from the data base
+  *@param{TrajetOptions}data
+  */
   getCodebdd(data: TrajetOptions){
     return this.http.post(this.getCodeServiceUrl, data);
   }
 
+  /**
+  *Send to the database the complainning message of the traveller
+  *@param{string}comment
+  *@param{number}id
+  */
   sendCommentbdd(comment, id){
     console.log("comment:"+ comment + " id : "+ id)
     let parameters= new HttpParams().set('comment', comment).append('id', id);
@@ -51,6 +56,10 @@ export class TrajetData {
     });
   }
 
+  /**
+  *Update status of a ride to 2 as it is considered as done
+  *@param{TrajetOptions}data
+  */
   validateStatusbdd(data: TrajetOptions){
     console.log(data)
     return new Promise((resolve, reject)=> {
@@ -64,6 +73,10 @@ export class TrajetData {
   });
   }
 
+  /**
+  *Get informations about a ride from the database
+  *@param{TrajetOptions}data
+  */
   getTrajetbdd(data: TrajetOptions){
     return new Promise((resolve, reject)=> {
       this.http.post(this.trajetServiceUrl, data).subscribe(res=>{
@@ -76,21 +89,10 @@ export class TrajetData {
   });
   }
 
-  getIdColisbdd(data: TrajetOptions){
-    return new Promise((resolve, reject) => {
-      this.http.post(this.trajetIdColisServiceUrl, data).subscribe(
-        res => {
-          resolve(res);
-        },
-        err => {
-          console.log('Error occured in getIdColis:' + err);
-          reject();
-        }
-      );
-    });
-  }
-
-
+  /**
+  *Get all the ride's informations that are relatives to the same round
+  *@param{TrajetOptions}data
+  */
     getTrajetAllbdd(data: TrajetOptions){
       return new Promise((resolve, reject)=> {
         this.http.post(this.trajAllServiceUrl, data).subscribe(res=>{
@@ -103,6 +105,10 @@ export class TrajetData {
     });
     }
 
+    /**
+    *Get informations about a ride that a drive has in charge
+    *@param{TrajetOptions}data
+    */
     getTrajetConductbdd(data: TrajetOptions){
       return new Promise((resolve, reject)=> {
         this.http.post(this.trajConductServiceUrl, data).subscribe(res=>{
@@ -115,20 +121,10 @@ export class TrajetData {
     });
     }
 
-  getIdTourneebdd(data: TrajetOptions){
-    return new Promise((resolve, reject) => {
-      this.http.post(this.tourneeIdServiceUrl, data).subscribe(
-        res => {
-          resolve(res);
-        },
-        err => {
-          console.log('Error occured in getIdTournee:' + err);
-          reject();
-        }
-      );
-    });
-  }
-
+  /**
+  *Get informations about a ride that is relative to a package
+  *@param{TrajetOptions}data
+  */
   getTrajetColisbdd(data: TrajetOptions){
     return new Promise((resolve, reject) => {
       this.http.post(this.trajetColisServiceURL, data).subscribe(
@@ -142,76 +138,4 @@ export class TrajetData {
       );
     });
   }
-
-
-/*
-  load(): any {
-    if (this.data) {
-      return of(this.data);
-    } else {
-      return this.http
-        .get('assets/data/data.json')
-    }
-  }
-
-
-  getTimeline(
-  dayIndex: number,
-  queryText = '',
-  segment = 'all'
-) {
-  return this.load().pipe(
-    map((data: any) => {
-      const day = data.trajet[dayIndex];
-      day.shownSessions = 0;
-
-     queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
-      const queryWords = queryText.split(' ').filter(w => !!w.trim().length);
-
-       day.groups.forEach((group: any) => {
-         group.sessions.forEach((session:any)=>{
-           session.hide;
-           day.shownSessions++;
-           console.log(day.shownSessions);
-         });
-         });
-      return day;
-    })
-  );
-}
-*/
-
-/*
-getSteps(
-  dayIndex: number,
-  queryText = '',
-  segment = 'all'
-){
-  return this.load().pipe(
-    map((data:any) =>{
-      const tour = data.trajet[dayIndex];
-      tour.shownSteps =0;
-
-      queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
-       const queryWords = queryText.split(' ').filter(w => !!w.trim().length);
-
-       tour.groups.forEach((group: any) => {
-             group.hide = false;
-             group.sessions.forEach((session: any)=>{
-               if(session.steps){
-                 session.steps.forEach((step:any)=>{
-                   tour.shownSteps++;
-                   console.log("tour: " +tour.shownSteps);
-                 });
-               }
-             });
-         });
-         return tour;
-    })
-  );
-}
-*/
-
-
-
 }

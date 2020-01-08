@@ -1,3 +1,6 @@
+/**
+*Interface that carry every variables relatives to a ride
+*/
 export interface TrajetOptions {
   idUser: number;
   idColis: number;

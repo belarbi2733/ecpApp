@@ -24,6 +24,7 @@ enum COLORS {
   templateUrl: './modal-rating.page.html',
   styleUrls: ['./modal-rating.page.scss'],
 })
+
 export class ModalRatingPage implements OnInit {
   submittedMess = false;
   supportMessage: string;
@@ -92,7 +93,7 @@ export class ModalRatingPage implements OnInit {
    }
 
    /**
-   *Sending rating to compute the average rating and update the database [sendRatingbdd]{@link }
+   *Sending rating to compute the average rating and update the database [sendRatingbdd]{@link ../injectables/UserData.html#sendRatingbdd}
    */
    sendRating(){
      setTimeout(()=>{
@@ -105,7 +106,7 @@ export class ModalRatingPage implements OnInit {
    }
 
    /**
-   *Get id of driver [getDriverbdd]{@link }
+   *Get id of driver [getDriverbdd]{@link ../injectables/PositionService.html#getDriverbdd}
    *@param {} idTour
    */
    getDriverId(idTour){

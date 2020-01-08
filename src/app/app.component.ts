@@ -1,31 +1,23 @@
 import { Component } from '@angular/core';
-
 import { Router } from '@angular/router';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Events } from '@ionic/angular';
-
 import { Storage } from '@ionic/storage';
-
-
-
-
-
-
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
 
+export class AppComponent {
   loggedIn = false;
 
-
-
+  /**
+  *Call [initializeApp]{@link AppComponent.html#initializeApp}
+  */
   constructor(
     private events: Events,
     private platform: Platform,
@@ -33,49 +25,22 @@ export class AppComponent {
     private statusBar: StatusBar,
     private storage: Storage,
     private router: Router
-
-
-
   ) {
     this.initializeApp();
   }
 
-  async ngOnInit() {
-//  this.checkLoginStatus();
-//  this.listenForLoginEvents();
+/**
+*@ignore
+*/
+  async ngOnInit() {}
 
-}
-
+/**
+*Function to initialise the app
+*/
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
-
-
-/*
-  checkLoginStatus() {
-    return this.userData.isLoggedIn().then(loggedIn => {
-      return this.updateLoggedInStatus(loggedIn);
-    });
-  }
-
-  updateLoggedInStatus(loggedIn: boolean) {
-    setTimeout(() => {
-      this.loggedIn = loggedIn;
-    }, 300);
-  }
-
-  listenForLoginEvents() {
-    this.events.subscribe('user:login', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    this.events.subscribe('user:logout', () => {
-      this.updateLoggedInStatus(false);
-    });
-  }
-*/
-
 }

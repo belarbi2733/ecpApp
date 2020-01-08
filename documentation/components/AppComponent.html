@@ -141,10 +141,6 @@
                             <li>
                                 <a href="#initializeApp">initializeApp</a>
                             </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -168,12 +164,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app.component.ts:16</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Call <a href="AppComponent.html#initializeApp">initializeApp</a></p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -297,58 +295,19 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/app.component.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/app.component.ts:40</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to initialise the app</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            ngOnInit
-                        </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/app.component.ts:43</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                 </td>
@@ -380,7 +339,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -394,33 +353,25 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-
 import { Router } from &#x27;@angular/router&#x27;;
-
 import { Platform } from &#x27;@ionic/angular&#x27;;
 import { SplashScreen } from &#x27;@ionic-native/splash-screen/ngx&#x27;;
 import { StatusBar } from &#x27;@ionic-native/status-bar/ngx&#x27;;
 import { Events } from &#x27;@ionic/angular&#x27;;
-
 import { Storage } from &#x27;@ionic/storage&#x27;;
-
-
-
-
-
-
 
 @Component({
   selector: &#x27;app-root&#x27;,
   templateUrl: &#x27;app.component.html&#x27;,
   styleUrls: [&#x27;app.component.scss&#x27;]
 })
-export class AppComponent {
 
+export class AppComponent {
   loggedIn &#x3D; false;
 
-
-
+  /**
+  *Call [initializeApp]{@link AppComponent.html#initializeApp}
+  */
   constructor(
     private events: Events,
     private platform: Platform,
@@ -428,51 +379,24 @@ export class AppComponent {
     private statusBar: StatusBar,
     private storage: Storage,
     private router: Router
-
-
-
   ) {
     this.initializeApp();
   }
 
-  async ngOnInit() {
-//  this.checkLoginStatus();
-//  this.listenForLoginEvents();
+/**
+*@ignore
+*/
+  async ngOnInit() {}
 
-}
-
+/**
+*Function to initialise the app
+*/
   initializeApp() {
     this.platform.ready().then(() &#x3D;&gt; {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
-
-
-/*
-  checkLoginStatus() {
-    return this.userData.isLoggedIn().then(loggedIn &#x3D;&gt; {
-      return this.updateLoggedInStatus(loggedIn);
-    });
-  }
-
-  updateLoggedInStatus(loggedIn: boolean) {
-    setTimeout(() &#x3D;&gt; {
-      this.loggedIn &#x3D; loggedIn;
-    }, 300);
-  }
-
-  listenForLoginEvents() {
-    this.events.subscribe(&#x27;user:login&#x27;, () &#x3D;&gt; {
-      this.updateLoggedInStatus(true);
-    });
-
-    this.events.subscribe(&#x27;user:logout&#x27;, () &#x3D;&gt; {
-      this.updateLoggedInStatus(false);
-    });
-  }
-*/
-
 }
 </code></pre>
     </div>

@@ -1,5 +1,7 @@
 let pg = require("pg");
-
+/**
+*Page to config the server
+*/
 let config = {
   user: 'postgres',
   database: 'ECP',

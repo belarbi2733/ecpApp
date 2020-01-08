@@ -1,0 +1,13 @@
+{
+  "source": {
+    "include": ["src"],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|.json$)"
+  },
+  "plugins":[
+    "plugins/markdown"
+  ],
+  "opts":{
+    "recurse": true
+  }
+}

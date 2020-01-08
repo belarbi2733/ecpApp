@@ -246,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:106</a></div>
                 </td>
             </tr>
 
@@ -287,8 +287,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:97</a></div>
                 </td>
             </tr>
 
@@ -328,8 +328,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:128</a></div>
                 </td>
             </tr>
 
@@ -369,8 +369,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:60</a></div>
                 </td>
             </tr>
 
@@ -410,8 +410,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:71</a></div>
                 </td>
             </tr>
 
@@ -762,7 +762,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -826,7 +826,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -862,7 +862,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -894,7 +894,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/tabs/step-detail/step-detail.page.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -920,6 +920,7 @@ import { TrajetOptions } from &#x27;../../interfaces/trajet-options&#x27;;
 import { TrajetData } from &#x27;../../providers/trajet-data&#x27;;
 
 let resp: any;
+
 /**
 *List of steps of a round of a driver
 */
@@ -932,7 +933,6 @@ let resp: any;
 export class StepDetailPage{
   @ViewChild(&#x27;tourneeList&#x27;, { static: true }) tourneeList: IonList;
 
-
   session: any &#x3D; [];
   defaultHref &#x3D; &#x60;/tabs/trajet&#x60;;
   isValidate &#x3D; false;
@@ -944,7 +944,6 @@ export class StepDetailPage{
   queryText &#x3D; &#x27;&#x27;;
   segment &#x3D; &#x27;all&#x27;;
   idCar&#x3D; false;
-
   shownSessions: any &#x3D; 0;
   tournee: TourneeOptions&#x3D;  { idUser: null,idCar: null, depart: &#x27;&#x27;, arrivee: &#x27;&#x27;, date: &#x27;&#x27;, id: null};
   trajet: TrajetOptions&#x3D;  { idUser: null, idColis: null,idTour: null, depart: &#x27;&#x27;, arrivee: &#x27;&#x27;, date: &#x27;&#x27;, id: null, code: null};
@@ -974,7 +973,6 @@ export class StepDetailPage{
         this.TrajetBdd();
       }, 200);
   }
-
 
   /**
   *Get all rides corresponding to the round [getTrajetAllbdd]{@link ../injectables/TrajetData.html#getTrajetAllbdd}

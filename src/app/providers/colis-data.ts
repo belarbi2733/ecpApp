@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import {TourneeOptions} from '../interfaces/tournee-options';
 import {TrajetOptions} from '../interfaces/trajet-options';
-import {UserOptions} from '../interfaces/user-options';
 
 
 @Injectable({
@@ -19,9 +15,15 @@ export class ColisData{
   colisServiceUrl = this.Url +"colis";
   colisOnlyServiceUrl = this.Url +"colisonly";
 
-
+  /**
+  *@ignore
+  */
   constructor(public http: HttpClient){}
 
+  /**
+  *Get package informations from the data base
+  *@param{TrajetOptions}data
+  */
   getColisbdd(data: TrajetOptions){
     return new Promise((resolve, reject)=>{
       this.http.post(this.colisServiceUrl, data).subscribe(res=>{
@@ -34,6 +36,10 @@ export class ColisData{
   });
   }
 
+  /**
+  * Get informations about the transfer of a package of a user that do not travel with his package
+  *@param{TrajetOptions}data
+  */
   getColisOnlybdd(data: TrajetOptions){
     return new Promise((resolve, reject)=>{
       this.http.post(this.colisOnlyServiceUrl, data).subscribe(res=>{

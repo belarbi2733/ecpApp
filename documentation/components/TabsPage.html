@@ -133,10 +133,6 @@
                                 <a href="#loggedIn">loggedIn</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#toastController">toastController</a>
-                            </li>
-                            <li>
                                 <a href="#tournee">tournee</a>
                             </li>
                         </ul>
@@ -188,126 +184,6 @@
     </table>
 </section>
 
-    <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(events: Events, userData: <a href="../injectables/UserData.html">UserData</a>, storage: Storage, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, toastController: ToastController, geolocation: Geolocation, posApi: <a href="../injectables/PositionService.html">PositionService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tabs/tabs.page.ts:19</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>events</td>
-                                                  
-                                                        <td>
-                                                                    <code>Events</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>userData</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserData.html" target="_self" >UserData</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>storage</td>
-                                                  
-                                                        <td>
-                                                                    <code>Storage</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>toastController</td>
-                                                  
-                                                        <td>
-                                                                    <code>ToastController</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>geolocation</td>
-                                                  
-                                                        <td>
-                                                                    <code>Geolocation</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>posApi</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/PositionService.html" target="_self" >PositionService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -340,14 +216,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:94</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function that check if a user is log yet or not with <a href="../injectables/UserData.html#isLog">isLog</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
@@ -379,14 +257,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:115</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Listen to events if user log in or out
+to update the status <a href="TabsPage.html#updateLoggedInStatus">updateLoggedInStatus</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -418,14 +299,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:128</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function that log out the user <a href="../injectables/UserData.html#logoutfunc">logoutfunc</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -457,14 +340,19 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:43</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Initialise les valeurs du localstorage
+then <a href="TabsPage.html#checkLoginStatus">checkLoginStatus</a>
+and <a href="TabsPage.html#listenForLoginEvents">listenForLoginEvents</a></p>
+<p>When the user is log, the app watch his location <a href="TabsPage.html#watch">watch</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -496,14 +384,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:84</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Save location of the user in data base <a href="../injectables/PositionService.html#sendPosition">sendPosition</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -573,14 +463,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:139</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Toast to alert the user that he has to login before accessing any other pages</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -612,14 +504,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:104</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>update the login status of the user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -682,14 +576,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/tabs/tabs.page.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/tabs/tabs.page.ts:66</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function that watch frequently the location of the user&#39;s device</p>
+<p>It save the location into the data base with <a href="TabsPage.html#positionSend">positionSend</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -725,7 +622,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/tabs/tabs.page.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tabs/tabs.page.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -757,7 +654,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tabs/tabs.page.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/tabs/tabs.page.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -783,35 +680,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/tabs/tabs.page.ts:16</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="toastController"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            toastController</b>
-                            <a href="#toastController"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>ToastController</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tabs/tabs.page.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/tabs/tabs.page.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -843,7 +712,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/tabs/tabs.page.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/tabs/tabs.page.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -865,6 +734,7 @@ import { TourneeOptions } from &#x27;../interfaces/tournee-options&#x27;;
 import { Geolocation } from &#x27;@ionic-native/geolocation/ngx&#x27;;
 import { PositionService } from &#x27;../providers/position&#x27;;
 
+
 @Component({
   selector: &#x27;app-tabs&#x27;,
   templateUrl: &#x27;tabs.page.html&#x27;,
@@ -876,6 +746,9 @@ export class TabsPage {
   id: number;
   locTab:String[]&#x3D; [];
 
+/**
+*@ignore
+*/
   constructor(
     private events: Events,
     private userData: UserData,
@@ -887,8 +760,14 @@ export class TabsPage {
   ) {
    }
 
+  /**
+  *Initialise les valeurs du localstorage
+  *then [checkLoginStatus]{@link TabsPage.html#checkLoginStatus}
+  *and [listenForLoginEvents]{@link TabsPage.html#listenForLoginEvents}
+  *
+  *When the user is log, the app watch his location [watch]{@link TabsPage.html#watch}
+  */
   ngOnInit() {
-
       if (localStorage.length &#x3D;&#x3D;&#x3D; 0) { // Si le localStorage est vide, le remplir avec les valeurs par défaut
         console.log(&#x27;Défaut&#x27;);
         const isLogJson &#x3D; {isLog: false};
@@ -904,9 +783,13 @@ export class TabsPage {
   if(this.loggedIn){
     this.watch();
   }
-
 }
 
+/**
+*Function that watch frequently the location of the user&#x27;s device
+*
+*It save the location into the data base with [positionSend]{@link TabsPage.html#positionSend}
+*/
   watch(){
     const watch &#x3D; this.geolocation.watchPosition({enableHighAccuracy : true, timeout : 1000}).subscribe(position &#x3D;&gt;{
       if(position.coords !&#x3D;&#x3D; undefined){
@@ -921,7 +804,10 @@ export class TabsPage {
       }
     });
   }
-    //Sauve la position de l&#x27;utilisateur dans la DB
+
+  /**
+  *Save location of the user in data base [sendPosition]{@link ../injectables/PositionService.html#sendPosition}
+  */
     positionSend(lat, long){
       this.id &#x3D; JSON.parse(localStorage.getItem(&#x27;idUser&#x27;)).id; // Loading idUser in localStorage
       this.posApi.sendPosition(lat, long, this.id).subscribe((response)&#x3D;&gt;{
@@ -929,17 +815,19 @@ export class TabsPage {
       });
     }
 
+    /**
+    *Function that check if a user is log yet or not with [isLog]{@link ../injectables/UserData.html#isLog}
+    */
   checkLoginStatus() {
-  //  return this.userData.isLoggedIn().then(loggedIn &#x3D;&gt; {
-  //    return this.updateLoggedInStatus(loggedIn);
       this.loggedIn &#x3D; this.userData.isLog;
       console.log(&quot;loggedIn: &quot;+ this.loggedIn)
       return this.loggedIn;
-
-      //&#x3D; JSON.parse(localStorage.getItem(&#x27;isLog&#x27;)).isLog; // Loading loginstatus in localStorage
-    //});
   }
 
+  /**
+  *update the login status of the user
+  *@param{boolean}loggedIn
+  */
   updateLoggedInStatus(loggedIn: boolean) {
     setTimeout(() &#x3D;&gt; {
       this.loggedIn &#x3D; loggedIn;
@@ -947,8 +835,11 @@ export class TabsPage {
 
   }
 
+  /**
+  *Listen to events if user log in or out
+  *to update the status [updateLoggedInStatus]{@link TabsPage.html#updateLoggedInStatus}
+  */
   listenForLoginEvents() {
-
     this.events.subscribe(&#x27;user:login&#x27;, () &#x3D;&gt; {
       this.updateLoggedInStatus(true);
     });
@@ -958,6 +849,9 @@ export class TabsPage {
 
   }
 
+/**
+*Function that log out the user [logoutfunc]{@link ../injectables/UserData.html#logoutfunc}
+*/
   logout() {
    this.userData.logoutfunc().then(() &#x3D;&gt; {
       return this.loggedIn&#x3D; this.userData.isLog;
@@ -966,6 +860,9 @@ export class TabsPage {
     });
   }
 
+  /**
+  *Toast to alert the user that he has to login before accessing any other pages
+  */
   async toast() {
     const toast &#x3D; await this.toastController.create({
       message: &#x27;Vous devez vous connecter&#x27;,

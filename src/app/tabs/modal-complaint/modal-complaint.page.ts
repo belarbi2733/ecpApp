@@ -5,21 +5,23 @@ import { Router } from '@angular/router';
 import {ModalRatingPage} from '../modal-rating/modal-rating.page';
 import { TrajetData } from '../../providers/trajet-data';
 
-
-
-
-
+/**
+*Modal that open when the user want to complain about the driver
+*/
 @Component({
   selector: 'app-modal-complaint',
   templateUrl: './modal-complaint.page.html',
   styleUrls: ['./modal-complaint.page.scss'],
 })
-export class ModalComplaintPage implements OnInit {
 
+export class ModalComplaintPage implements OnInit {
   submittedMess = false;
   supportMessage: string;
   isClosed = false;
 
+  /**
+  *param that comes from the previous page
+  */
   @Input() idTraj: number;
 
   constructor(
@@ -29,24 +31,35 @@ export class ModalComplaintPage implements OnInit {
     public toastCtrl: ToastController
 ) { }
 
-
+/**
+*@ignore
+*/
   ngOnInit() {
   }
 
+/**
+*function to close the modal
+*/
   dismiss(data?: any) {
     this.modalCtrl.dismiss(data);
   }
 
+/**
+*Send the message that the user types in to the data base with [sendCommentbdd]{@link ../injectables/TrajetData.html#sendCommentbdd}
+*/
  sendComment(){
     setTimeout(()=>{
-      console.log("comment"+this.supportMessage)
-      console.log("id"+this.idTraj)
+      console.log("comment "+this.supportMessage)
+      console.log("id "+this.idTraj)
       this.trajetData.sendCommentbdd(this.supportMessage, this.idTraj).then((response)=>{
         console.log(response);
       });
     }, 300);
   }
 
+  /**
+  *@ignore
+  */
   async openModalRating() {
       const modal = await this.modalCtrl.create({
         component: ModalRatingPage
@@ -54,11 +67,12 @@ export class ModalComplaintPage implements OnInit {
       return await modal.present();
     }
 
+/**
+*When the user submit the form, function that call [sendComment]{@link ModalComplaintPage.html#sendComment} then close the modal
+*/
   async submit(form: NgForm) {
-
       this.submittedMess = true;
       this.isClosed = true;
-
 
       if (form.valid ) {
         console.log("support mess: "+this.supportMessage)
@@ -70,8 +84,7 @@ export class ModalComplaintPage implements OnInit {
         });
         await toast.present();
         this.modalCtrl.dismiss();
-        this.openModalRating();
-
+        //this.openModalRating();
       }
 }
 }

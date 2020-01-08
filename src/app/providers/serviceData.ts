@@ -14,17 +14,31 @@ export class ServiceData{
   userServiceUrl= this.Url + "login";
   getCodeServiceUrl = this.Url + "getCode";
   checkCodeServiceUrl = this.Url + "checkCode";
-
+  /**
+  *@ignore
+  */
   constructor( private http : HttpClient){  }
 
+  /**
+  *Function that is not usefull anymore
+  *@ignore
+  */
   getCode(){
     return this.http.get(this.codeServiceUrl);
   }
 
+  /**
+  *Get the code that is relative to a ride from the data base
+  *@param{TrajetOptions}data
+  */
   getCodebdd(data: TrajetOptions){
     return this.http.post(this.getCodeServiceUrl,data);
   }
 
+  /**
+  *Function that compare the code that is scan with the code relative to the ride from de the database
+  *@param{TrajetOptions}data
+  */
   checkCodebdd(data: TrajetOptions){
     return new Promise((resolve, reject)=>{
         this.http.post(this.checkCodeServiceUrl, data).subscribe(res=>{
@@ -46,6 +60,10 @@ export class ServiceData{
     });
   }
 
+  /**
+  *Compare login informations that the user types in with informations from the data base to confirm and log the user in
+  *@param{UserOptions}data 
+  */
   loginDbb(data: UserOptions){
     return new Promise((resolve, reject)=>{
         this.http.post(this.userServiceUrl, data).subscribe(res=>{

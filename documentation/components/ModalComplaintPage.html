@@ -64,6 +64,13 @@
     <code>src/app/tabs/modal-complaint/modal-complaint.page.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Modal that open when the user want to complain about the driver</p>
+
+    </p>
 
 
     <p class="comment">
@@ -166,11 +173,7 @@
                                 <a href="#dismiss">dismiss</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#openModalRating">openModalRating</a>
+                                <a href="#sendComment">sendComment</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -180,6 +183,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#idTraj">idTraj</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -194,12 +211,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(modalCtrl: ModalController, alertCtrl: AlertController, toastCtrl: ToastController)</code>
+<code>constructor(trajetData: <a href="../injectables/TrajetData.html">TrajetData</a>, modalCtrl: ModalController, alertCtrl: AlertController, toastCtrl: ToastController)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -216,6 +233,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>trajetData</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TrajetData.html" target="_self" >TrajetData</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>modalCtrl</td>
                                                   
@@ -261,7 +290,36 @@
         </table>
 </section>
 
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="idTraj"></a>
+                        <b>idTraj</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:25</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>param that comes from the previous page</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -292,14 +350,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:43</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>function to close the modal</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -344,76 +404,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="sendComment"></a>
                     <span class="name">
                         <b>
-                            ngOnInit
+                            sendComment
                         </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        <a href="#sendComment"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>sendComment()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:50</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Send the message that the user types in to the data base with <a href="../injectables/TrajetData.html#sendCommentbdd">sendCommentbdd</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="openModalRating"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            openModalRating
-                        </b>
-                        <a href="#openModalRating"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>openModalRating()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:35</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                 </td>
@@ -444,14 +465,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:73</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>When the user submit the form, function that call <a href="ModalComplaintPage.html#sendComment">sendComment</a> then close the modal</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -519,7 +542,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -545,7 +568,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -573,7 +596,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -599,7 +622,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -626,7 +649,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -654,7 +677,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/tabs/modal-complaint/modal-complaint.page.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -672,35 +695,63 @@ import { Config, ModalController,NavParams , AlertController, ToastController } 
 import { NgForm } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import {ModalRatingPage} from &#x27;../modal-rating/modal-rating.page&#x27;;
+import { TrajetData } from &#x27;../../providers/trajet-data&#x27;;
 
-
-
-
+/**
+*Modal that open when the user want to complain about the driver
+*/
 @Component({
   selector: &#x27;app-modal-complaint&#x27;,
   templateUrl: &#x27;./modal-complaint.page.html&#x27;,
   styleUrls: [&#x27;./modal-complaint.page.scss&#x27;],
 })
-export class ModalComplaintPage implements OnInit {
 
+export class ModalComplaintPage implements OnInit {
   submittedMess &#x3D; false;
   supportMessage: string;
   isClosed &#x3D; false;
 
+  /**
+  *param that comes from the previous page
+  */
+  @Input() idTraj: number;
 
   constructor(
+    private trajetData: TrajetData,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController
 ) { }
 
-
+/**
+*@ignore
+*/
   ngOnInit() {
   }
 
+/**
+*function to close the modal
+*/
   dismiss(data?: any) {
     this.modalCtrl.dismiss(data);
   }
+
+/**
+*Send the message that the user types in to the data base with [sendCommentbdd]{@link ../injectables/TrajetData.html#sendCommentbdd}
+*/
+ sendComment(){
+    setTimeout(()&#x3D;&gt;{
+      console.log(&quot;comment &quot;+this.supportMessage)
+      console.log(&quot;id &quot;+this.idTraj)
+      this.trajetData.sendCommentbdd(this.supportMessage, this.idTraj).then((response)&#x3D;&gt;{
+        console.log(response);
+      });
+    }, 300);
+  }
+
+  /**
+  *@ignore
+  */
   async openModalRating() {
       const modal &#x3D; await this.modalCtrl.create({
         component: ModalRatingPage
@@ -708,24 +759,24 @@ export class ModalComplaintPage implements OnInit {
       return await modal.present();
     }
 
+/**
+*When the user submit the form, function that call [sendComment]{@link ModalComplaintPage.html#sendComment} then close the modal
+*/
   async submit(form: NgForm) {
-
       this.submittedMess &#x3D; true;
       this.isClosed &#x3D; true;
 
-
       if (form.valid ) {
-
+        console.log(&quot;support mess: &quot;+this.supportMessage)
         this.submittedMess &#x3D; false;
-
+        this.sendComment();
         const toast &#x3D; await this.toastCtrl.create({
           message: &#x27;Votre message a été envoyé à l\&#x27;administrateur&#x27;,
           duration: 3000
         });
         await toast.present();
         this.modalCtrl.dismiss();
-        this.openModalRating();
-
+        //this.openModalRating();
       }
 }
 }

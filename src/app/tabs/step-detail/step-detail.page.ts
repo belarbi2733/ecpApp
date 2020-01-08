@@ -11,6 +11,7 @@ import { TrajetOptions } from '../../interfaces/trajet-options';
 import { TrajetData } from '../../providers/trajet-data';
 
 let resp: any;
+
 /**
 *List of steps of a round of a driver
 */
@@ -23,7 +24,6 @@ let resp: any;
 export class StepDetailPage{
   @ViewChild('tourneeList', { static: true }) tourneeList: IonList;
 
-
   session: any = [];
   defaultHref = `/tabs/trajet`;
   isValidate = false;
@@ -35,7 +35,6 @@ export class StepDetailPage{
   queryText = '';
   segment = 'all';
   idCar= false;
-
   shownSessions: any = 0;
   tournee: TourneeOptions=  { idUser: null,idCar: null, depart: '', arrivee: '', date: '', id: null};
   trajet: TrajetOptions=  { idUser: null, idColis: null,idTour: null, depart: '', arrivee: '', date: '', id: null, code: null};
@@ -65,7 +64,6 @@ export class StepDetailPage{
         this.TrajetBdd();
       }, 200);
   }
-
 
   /**
   *Get all rides corresponding to the round [getTrajetAllbdd]{@link ../injectables/TrajetData.html#getTrajetAllbdd}

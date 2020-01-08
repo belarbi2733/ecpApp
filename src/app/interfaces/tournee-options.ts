@@ -1,3 +1,6 @@
+/**
+*Interface that carry every variables relatives to a round
+*/
 export interface TourneeOptions {
   idUser: number;
   idCar: number;

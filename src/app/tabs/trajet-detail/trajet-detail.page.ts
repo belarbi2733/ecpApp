@@ -49,9 +49,12 @@ export class TrajetDetailPage{
 /**
 *[getIdCar]{@link TrajetDetailPage.html#getIdCar} before get informations about ride
 *
-*If driver, get ride informations [TrajetConduct]{@link TrajetDetailPage.html#TrajetConduct} and check validation status of the ride
+*If driver, get ride informations [TrajetConduct]{@link TrajetDetailPage.html#TrajetConduct}
+*and check validation status of the ride
 *
-*If traveller, get ride informations [getTrajetColis]{@link TrajetDetailPage.html#getTrajetColis} and [Trajetbdd]{@link TrajetDetailPage.html#Trajetbdd}and check validation status of the ride
+*If traveller, get ride informations [getTrajetColis]{@link TrajetDetailPage.html#getTrajetColis}
+*and [Trajetbdd]{@link TrajetDetailPage.html#Trajetbdd}
+*and check validation status of the ride
 */
   constructor(
   private trajetData: TrajetData,
@@ -102,7 +105,9 @@ export class TrajetDetailPage{
   ionViewWillEnter() {}
 
 /**
-*Get informations [getTrajetbdd]{@link }about the ride in case of a traveller to display them on the app then [getColis]{@link }
+*Get informations [getTrajetbdd]{@link ../injectables/TrajetData.html#getTrajetbdd}
+*about the ride in case of a traveller
+*to display them on the app then [getColis]{@link TrajetDetailPage.html#getColis}
 */
   Trajetbdd(){
     console.log("PASSAGERRRRRRR")
@@ -132,7 +137,9 @@ export class TrajetDetailPage{
   }
 
 /**
-*Get informations [getTrajetConductbdd]{@link }about the ride in case of a driver to display them on the app then [getColis]{@link }
+*Get informations [getTrajetConductbdd]{@link ../injectables/TrajetData.html#getTrajetConductbdd}
+*about the ride in case of a driver
+*to display them on the app then [getColis]{@link TrajetDetailPage.html#getColis}
 */
   TrajetConduct(){
     console.log("CONDUCTEUUUUUUUUUR")
@@ -166,7 +173,9 @@ export class TrajetDetailPage{
   }
 
 /**
-*Get packages [getTrajetColisbdd]{@link } related to the ride in case of a traveller to display them on the app then [getColis]{@link }
+*Get packages [getTrajetColisbdd]{@link ../injectables/TrajetData.html#getTrajetColisbdd}
+*related to the ride in case of a traveller
+*to display them on the app then [getColis]{@link TrajetDetailPage.html#getColis}
 */
   getTrajetColis(){
     let bddId: any = this.route.snapshot.paramMap.get('bddId');
@@ -183,7 +192,8 @@ export class TrajetDetailPage{
   }
 
 /**
-*Get informations [getColisbdd]{@link }about packages
+*Get informations [getColisbdd]{@link ../injectables/ColisData.html#getColisbdd }about packages
+*@param{any} colisId
 */
   getColis(colisId : any ){
     console.log("id colis: "+colisId.idColis)

@@ -89,7 +89,8 @@ export class TrajetPage {
   }
 
 /**
-*Listen to events, if user is log call [getIdCar]{@link TrajetPage.html#getIdCar} and [updateTrajet]{@link TrajetPage.html#updateTrajet}
+*Listen to events, if user is log call [getIdCar]{@link TrajetPage.html#getIdCar}
+*and [updateTrajet]{@link TrajetPage.html#updateTrajet}
 */
   listenForLoginEvents(){
     this.events.subscribe('user:login', ()=>{
@@ -149,7 +150,8 @@ export class TrajetPage {
   }
 
   /**
-  *Get rides from database [getTrajetbdd]{@link ../injectables/TrajetData.html#getTrajetbdd} to display them in a list
+  *Get rides from database [getTrajetbdd]{@link ../injectables/TrajetData.html#getTrajetbdd}
+  *to display them in a list
   */
   TrajetBdd(){
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage
@@ -170,7 +172,8 @@ export class TrajetPage {
 
 
   /**
-  *Get round from database [getTourneebdd]{@link ../injectables/TourneeData.html#getTourneebdd} to display them on a list
+  *Get round from database [getTourneebdd]{@link ../injectables/TourneeData.html#getTourneebdd}
+  *to display them on a list
   */
   TourneeBdd(){
     this.tournee.idUser = JSON.parse(localStorage.getItem('idUser')).id;
@@ -189,7 +192,8 @@ export class TrajetPage {
   }
 
 /**
-*Get package of a traveller from database [getColisOnlybdd]{@link ../injectables/ColisData.html#getColisOnlybdd} to display them on a list
+*Get package of a traveller from database [getColisOnlybdd]{@link ../injectables/ColisData.html#getColisOnlybdd}
+*to display them on a list
 */
   getColisOnly(){
     this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id; // Loading idUser in localStorage

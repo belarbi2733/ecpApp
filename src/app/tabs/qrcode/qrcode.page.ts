@@ -10,7 +10,9 @@ import { TourneeData } from '../../providers/tournee-data';
 import { TrajetData } from '../../providers/trajet-data';
 
 
-
+/**
+*Page that allow the user to generate the QR-Code and the driver to scan the QR-Code to valide their journey
+*/
 @Component({
   selector: 'app-qrcode',
   templateUrl: 'qrcode.page.html',
@@ -31,9 +33,15 @@ export class QRCodePage {
   public tourData: TourneeData,
   private dataProvider: TrajetData,
   public router: Router
-
   ) {}
 
+/**
+*First call [getIdCar]{@link QRCodePage.html#getIdCar} to know if the user is a driver or a traveller
+*
+*Then if traveller, call [generateCode]{@link QRCodePage.html#generateCode}
+*
+*If driver, call [scanCode]{@link QRCodePage.html#scanCode}
+*/
   ngOnInit(){
     this.getIdCar();
     setTimeout(()=>{
@@ -47,6 +55,11 @@ export class QRCodePage {
     }, 200);
   }
 
+/**
+*Based on the id of the trajet, get the code frome the data Base [getCodebdd]{@link ../injectables/TrajetData.html#getCodebdd}
+*
+*Generate a QR-Code corresponding to that code
+*/
 generateCode(){
   let bddId: any = this.route.snapshot.paramMap.get('bddId');
   this.trajet.id = bddId;
@@ -56,6 +69,9 @@ generateCode(){
   });
 }
 
+/**
+*Acces to the camera and the native function to scan a QR-code the call [checkCode]{@link  QRCodePage.html#checkCode}
+*/
 scanCode(){
   this.barcodeScanner.scan().then(barcodeData => {
     this.scannedCode = barcodeData.text;
@@ -64,6 +80,11 @@ scanCode(){
   })
 }
 
+/**
+*Function that compare code of the traveller and driver to validate the ride using [checkCodebdd]{@link ../injectables/ServiceData.html#checkCodebdd}
+*
+*If the code is correct, the status of the trajet is change in the data base to validate with [validateStatusbdd]{@link ../injectables/TrajetData.html#validateStatusbdd}
+*/
 checkCode(){
   let bddId: any = this.route.snapshot.paramMap.get('bddId');
   this.trajet.id = bddId;
@@ -79,11 +100,19 @@ checkCode(){
     });
   }
 
+/**
+*Function that send the user to the previous page
+*/
 done(){
   let bddId: any = this.route.snapshot.paramMap.get('bddId');
   this.router.navigateByUrl('/tabs/trajet/BddTraj/'+bddId);
 }
 
+/**
+*Get idCar to know if user is a driver or a traveller
+*
+*Call [getIdCarbdd]{@link ../injectables/TourneeData.html#getIdCarbdd}
+*/
 getIdCar(){
   this.trajet.idUser = JSON.parse(localStorage.getItem('idUser')).id;
   console.log(this.trajet.idUser);
